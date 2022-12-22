@@ -165,8 +165,8 @@ const sidebars = {
           items: [
             {
               type: 'doc',
-              id: 'reference/api/access-control',
-              label: 'access control',
+              id: 'reference/api/use-the-apis',
+              label: 'use the API',
             },
             {
               type: 'doc',
