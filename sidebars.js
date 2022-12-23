@@ -19,6 +19,11 @@ const sidebars = {
   // But you can create a sidebar manually
   docs: [
     {
+      type: 'doc',
+      label: 'Home',
+      id: 'home/horizon',
+    },
+    {
       type: 'category',
       label: 'Tutorials',
       collapsed: false,
