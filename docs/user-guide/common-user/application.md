@@ -2,41 +2,65 @@
 title: Application
 toc_max_heading_level: 6
 ---
-## What is an Application
 
-An application is a set of default configurations for a cluster. Essentially, an application corresponds to a GitOps repository, with different environments corresponding to different branches.
+## Applications
+An application is defined as a set of clusters and provide default configurations for the clusters created under it. the following features about applications are provide: 
+* defining application member roles to provide application and cluster RBAC
+* providing statistics of pipelines
+* providing webhook to notify external systems
+* managing access tokens for the resources that need access to the Horizon CD API
 
-Users can create application configurations for different environments, and if a particular environment is not configured, the default application configurations are used.
+## Permissions
+The following table lists the application permissions available for each role: 
 
-When creating a cluster, the cluster inherits the application configuration for the relevant environment.
+|       Action       | Guest | Maintainer | PE | Owner |
+|:------------------:|:-----:|:----------:|:--:|:-----:|
+|       Create       |       |      √     |  √ |   √   |
+|        Edit        |       |      √     |  √ |   √   |
+|      Transfer      |       |      √     |  √ |   √   |
+| Set default region |       |      √     |  √ |   √   |
+|       Delete       |       |            |    |   √   |
 
-## Create an Application
+## Creating applications
+From the group page, you can click "New application" button to create a new application. The following table illustrates the application parameters: 
 
-1. Click on the **Groups** option at the top of the page.
-2. Enter the group where you have Maintainer or higher privileges.
-3. Click on **New application** in the top right corner of the page.
-4. Select the desired template.
-5. Fill in the required information according to the prompts on the page.
-6. Click on **Submit** to complete the creation process.
+|    Parameter    |                                    Description                                   | Note |
+|:---------------:|:--------------------------------------------------------------------------------:|:----:|
+|       Name      |                   An unique name identifier for the application                  |      |
+|   Description   |                        The description for the application                       |      |
+|     Priority    |                The priority of application instance in kubernetes                |      |
+|     Git URL     |                         The git repository of source code                        |      |
+|   Git revision  |              The git reference, which can be branch, tag and commit              |      |
+|  Git subfolder  | Optional subdirectory for the source code, used as a context directory for build |      |
+|   Build config  |     Build configurations, where you can select build type and other settings     |      |
+| Deploy template |                  Deploy template, where you can select workload                  |      |
+| Template config |            Template configurations, such as health check, target port            |      |
 
-## Transfer an Application
 
-1. Click on the **Applications** option at the top of the page.
-2. Enter the application you want to transfer.
-3. Click on **Advance** under **Settings** in the left-side menu.
-4. Select the group you want to transfer the application to.
-5. Click on  **Transfer** .
+## Editing applications
 
-Note: Only users with Maintainer or higher privileges in the target group can perform this action.
+**For basic information:**
+1. click on **Details** in the sidebar from the application page;
+2. select **Edit** above to change application settings.
 
-## Member
+**For configurations of specific environment:**
+1. click on **Details** in the sidebar from the application page;
+2. select environment in the dropdown in **Application configs** card, then click **Edit** to do changes.
 
-Refer to [Member](https://chat.openai.com/docs/user-guide/common-user/member) for more information.
 
-## Webhook
+## Transferring applications
+You can transfer the applications to another group, where your role should be no less than Maintainer. 
+1. click on **Settings -> Advance** in the sidebar from the application page;
+2. select a target group and click **Transfer**.
 
-Refer to [Webhook](https://chat.openai.com/docs/user-guide/common-user/webhook) for more information.
 
-## Access Token
+## Setting default region
+You can configure the default region for different environments. When you create a cluster for a environment, the default region for the environment is automatically populated.
+1. click on **Settings -> Advance** in the sidebar from the application page;
+2. select region for environment in the dropdown and click **Submit**.
 
-Refer to [Access Token](https://chat.openai.com/docs/user-guide/common-user/access-token) for more information.
+
+## Deleting applications
+When there is no cluster in the application, you can delete it. 
+1. click on **Details** in the sidebar from the application page;
+2. click **More -> Delete** above to delete your application.

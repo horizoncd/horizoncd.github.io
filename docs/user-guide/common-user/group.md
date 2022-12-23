@@ -3,7 +3,7 @@
 ## Groups
 Groups provide a logical grouping of applications from multiple teams, which provide the following features: 
 * defining templates in group to deploy custom applications
-* defining member roles to provide application and cluster RBAC
+* defining group member roles to provide group, application and cluster RBAC
 * managing access tokens for the resources that need access to the Horizon CD API
 * managing Oauth apps that can use Horizon as an OAuth provider
 * providing other advanced features (e.g. migration, linking to kubernetes etc...)
@@ -20,7 +20,7 @@ Group features are provided for different roles to manage groups. The following 
 |      Delete     |                 |                 |                 |        √        |
 
 ## Creating groups
-> **Note that** Only administrators can create root groups.
+> **Note that** only administrators can create root groups.
 
 1. Click **Groups** tab at the top navigation, and select and click to the parent group where you want to create a group. 
 ![groups_tab](group/groups_tab.png)
