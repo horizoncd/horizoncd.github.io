@@ -10,14 +10,10 @@ See a complete list of kubernetes.
 
 The following information is displayed:
 
-* Name - A unique name identifier for Kubernetes.
-* Display name - System internal display name.
+* Name - System internal display name.
 * Domain - Api-server access address. Domain name is recommended.
-* Kubeconfig - Configuration file for accessing Kubernetes
-* Ingress domain - The domain name bound to the ingress-nginx component in the k8s cluster
-* Prometheus url - Access address of prometheus providing rich indicator monitoring capabilities in the k8s cluster
-* Registry - Registry associated with the k8s cluster to which the mirror of the workload will be pushed
-* Disabled - Disable for maintenance or offline, After disable, you cannot select the k8s when creating an application cluster
+* Tags - Tags of the kubernetes, used to associate to groups.
+* Status - Show whether the kubernetes has been disabled.
 
 ## View kubernetes detail
 
@@ -32,15 +28,16 @@ Each kubernetes contains the following sections.
 
 #### Kubernetes infomation
 
-This section contains basic kubernetes information
+This section contains basic kubernetes information.
 
-* Name
-* Display name
-* Server - just the Domain, as explained in the previous section
-* Ingress domain
-* Prometheus url
-* Registry
-* Status - show whether the kubernetes has been disabled
+* Name - A unique name identifier for Kubernetes.
+* Display name - System internal display name.
+* Server - Just the Domain, as explained in the previous section.
+* Ingress domain - The domain name bound to the ingress-nginx component in the k8s cluster.
+* Prometheus url - Access address of prometheus providing rich indicator monitoring capabilities in the k8s cluster.
+* Registry - Registry associated with the k8s cluster to which the mirror of the workload will be pushed.
+* Kubeconfig - Configuration file for accessing Kubernetes.
+* Status - Show whether the kubernetes has been disabled.
 
 #### Tags
 
