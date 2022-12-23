@@ -4,7 +4,7 @@ toc_max_heading_level: 6
 ---
 
 ## Applications
-An application is defined as a set of clusters and provide default configurations for the clusters created under it. the following features about applications are provide: 
+An application is defined as a set of clusters and provide default configurations for the clusters created under it. The following features about applications are provide: 
 * defining application member roles to provide application and cluster RBAC
 * providing statistics of pipelines
 * providing webhook to notify external systems
@@ -22,19 +22,20 @@ The following table lists the application permissions available for each role:
 |       Delete       |       |            |    |   √   |
 
 ## Creating applications
-From the group page, you can click "New application" button to create a new application. The following table illustrates the application parameters: 
+From the group page, you can click **New application** button to create a new application. The following table illustrates the application parameters: 
 
-|    Parameter    |                                    Description                                   | Note |
-|:---------------:|:--------------------------------------------------------------------------------:|:----:|
-|       Name      |                   An unique name identifier for the application                  |      |
-|   Description   |                        The description for the application                       |      |
-|     Priority    |                The priority of application instance in kubernetes                |      |
-|     Git URL     |                         The git repository of source code                        |      |
-|   Git revision  |              The git reference, which can be branch, tag and commit              |      |
-|  Git subfolder  | Optional subdirectory for the source code, used as a context directory for build |      |
-|   Build config  |     Build configurations, where you can select build type and other settings     |      |
-| Deploy template |                  Deploy template, where you can select workload                  |      |
-| Template config |            Template configurations, such as health check, target port            |      |
+|    Parameter     |                                    Description                                   | Note |
+|:----------------:|:--------------------------------------------------------------------------------:|:----:|
+|       Name       |                   An unique name identifier for the application                  |      |
+|   Description    |                        The description for the application                       |      |
+|     Priority     |                The priority of application instance in kubernetes                |      |
+|     Git URL      |                         The git repository of source code                        |      |
+|   Git revision   |              The git reference, which can be branch, tag and commit              |      |
+|  Git subfolder   | Optional subdirectory for the source code, used as a context directory for build |      |
+|   Build config   |     Build configurations, where you can select build type and other settings     |      |
+| Deploy template  |                  Deploy template, where you can select workload                  |      |
+| Template release |                  Deploy template, where you can select workload                  |      |
+| Template config  |            Template configurations, such as health check, target port            |      |
 
 
 ## Editing applications
