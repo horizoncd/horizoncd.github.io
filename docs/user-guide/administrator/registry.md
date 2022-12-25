@@ -1,4 +1,4 @@
-Registry is an essential part of CICD system. We use registry to deliver our applications. And registry guarantees the requirements of immutable infrastructure.
+Registry is an essential part of CI&CD system. We use registry to deliver our applications. And registry guarantees the requirements of immutable infrastructure.
 
 ## View the Registry list
 
