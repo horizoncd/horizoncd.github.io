@@ -24,26 +24,28 @@ The following roles are provided by horizon by default, in descending order:
 - Maintainer
 - Guest
 
-| Action                                  | Guest | Maintainer | Owner | PE |
-| --------------------------------------- | ----- | ---------- | ----- | -- |
-| See a list of groups                    | ✓    | ✓         | ✓    | ✓ |
+|                 Action                  | Guest |Maintainer |Owner |PE |
+|:---------------------------------------:|:-----:|:---------:|:----:|:-:|
+| See a list of groups                    | ✓     | ✓         | ✓    | ✓ |
 | Create/edit/transfer groups             |       | ✓         | ✓    | ✓ |
-| Delete groups                           |       |            | ✓    |    |
-| See a list of applications              | ✓    | ✓         | ✓    | ✓ |
-| Create/edit/transfer applications       |       |            | ✓    |    |
-| Delete applications                     |       |            | ✓    |    |
-| Create/edit/free clusters               |       | ✓         | ✓    | ✓ |
-| Delete clusters                         |       |            | ✓    |    |
-| Build/deploy/rollback clusters          |       | ✓         | ✓    | ✓ |
-| Online/offline pods                     |       | ✓         | ✓    | ✓ |
+| Link kubernetes                         |       |           | ✓    | ✓ |
+| Delete groups                           |       |           | ✓    |   |
+| See a list of applications              | ✓     | ✓         | ✓    | ✓ |
+| Create/edit/transfer applications       |       |           | ✓    |   |
+| Set default region                      |       | ✓         | ✓    | ✓ |
+| Delete applications                     |       |           | ✓    |   |
+| Create/copy/edit/free clusters          |       | ✓         | ✓    | ✓ |
+| Delete clusters                         |       |           | ✓    |   |
+| Build/deploy/restart/rollback clusters  |       | ✓         | ✓    | ✓ |
+| Online/offline/delete pods              |       | ✓         | ✓    | ✓ |
 | See a list of pipelineruns              |       | ✓         | ✓    | ✓ |
 | Create/edit/delete tags                 |       | ✓         | ✓    | ✓ |
 | Create/delete access tokens             |       | ✓         | ✓    | ✓ |
-| Create/edit/delete webhooks             |       |            | ✓    |    |
-| Create/edit/delete oauth app            |       |            | ✓    |    |
-| See a list of templates                 | ✓    | ✓         | ✓    | ✓ |
-| Create/edit/delete template             |       |            | ✓    |    |
-| Create/edit/delete template schema tags |       |            |       | ✓ |
+| Create/edit/delete webhooks             |       |           | ✓    |   |
+| Create/edit/delete oauth app            |       |           | ✓    |   |
+| See a list of templates                 | ✓     | ✓         | ✓    | ✓ |
+| Create/edit/delete template             |       |           | ✓    |   |
+| Create/edit/delete template schema tags |       |           |      | ✓ |
 
 In addition, the top-level group needs to be created by an administrator.
 

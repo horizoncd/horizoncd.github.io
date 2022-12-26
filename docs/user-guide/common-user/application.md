@@ -10,18 +10,8 @@ An application is defined as a set of clusters and provide default configuration
 * providing webhook to notify external systems
 * managing access tokens for the resources that need access to the Horizon CD API
 
-## Permissions
-The following table lists the application permissions available for each role: 
 
-|       Action       | Guest | Maintainer | PE | Owner |
-|:------------------:|:-----:|:----------:|:--:|:-----:|
-|       Create       |       |      √     |  √ |   √   |
-|        Edit        |       |      √     |  √ |   √   |
-|      Transfer      |       |      √     |  √ |   √   |
-| Set default region |       |      √     |  √ |   √   |
-|       Delete       |       |            |    |   √   |
-
-## Creating applications
+## Create applications
 From the group page, you can click **New application** button to create a new application. The following table illustrates the application parameters: 
 
 |    Parameter     |                                    Description                                   | Note |
@@ -38,7 +28,7 @@ From the group page, you can click **New application** button to create a new ap
 | Template config  |            Template configurations, such as health check, target port            |      |
 
 
-## Editing applications
+## Edit applications
 
 **For basic information:**
 1. click on **Details** in the sidebar from the application page;
@@ -49,19 +39,19 @@ From the group page, you can click **New application** button to create a new ap
 2. select environment in the dropdown in **Application configs** card, then click **Edit** to do changes.
 
 
-## Transferring applications
+## Transfer applications
 You can transfer the applications to another group, where your role should be no less than Maintainer. 
 1. click on **Settings -> Advance** in the sidebar from the application page;
 2. select a target group and click **Transfer**.
 
 
-## Setting default region
+## Set default region
 You can configure the default region for different environments. When you create a cluster for a environment, the default region for the environment is automatically populated.
 1. click on **Settings -> Advance** in the sidebar from the application page;
 2. select region for environment in the dropdown and click **Submit**.
 
 
-## Deleting applications
+## Delete applications
 When there is no cluster in the application, you can delete it. 
 1. click on **Details** in the sidebar from the application page;
 2. click **More -> Delete** above to delete your application.
