@@ -1,4 +1,8 @@
-# Deploy and manage pods
+---
+title: Deploy and Manage Pods
+toc_max_heading_level: 6
+---
+
 Horizon CD provide deploy and pods management based on Argo CD. You can easily deploy your cluster and check your pods status.
 
 ## Build and deploy cluster

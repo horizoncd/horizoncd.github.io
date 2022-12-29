@@ -1,4 +1,7 @@
-# Groups
+---
+title: Group
+toc_max_heading_level: 6
+---
 
 ## Groups
 Groups provide a logical grouping of applications from multiple teams, which provide the following features: 
