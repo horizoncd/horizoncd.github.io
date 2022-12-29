@@ -1,4 +1,7 @@
-# User Management
+---
+title: User Management
+toc_max_heading_level: 6
+---
 
 User Management allows you to view, modify, and manage user information, as well as the status of their [OIDC](https://openid.net/connect/) Link, which represents a connection between a Horizon account and an Identity Provider (IdP). With this connection, users can log in through the IdP.
 
@@ -24,7 +27,6 @@ To modify a user's administrator privileges:
 4. Select a user to modify and click on the switch in the **admin** column to change their administrator status.
 
 ## Ban a User
-
 
 Banning a user prevents them from logging into the Horizon system.
 

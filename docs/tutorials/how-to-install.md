@@ -1,3 +1,8 @@
+---
+title: How to Install
+toc_max_heading_level: 6
+---
+
 This section describes how to perform a new installation of Horizon.
 
 ## Prerequisites
@@ -30,7 +35,7 @@ The following table lists the minimum and recommended hardware configurations fo
 
 We use helm to organize Horizon's whole dependencies, which means you can lauch a Horizon instance by simply executing the following command:
 
-```
+```bash
 helm install horizon -nhorizon --create-namespace https://github.com/horizoncd/installation/releases/download/${VERSION}/horizon-${VERSION}.tgz
 ```
 
@@ -40,7 +45,7 @@ Chart documentation is available in [horizon chart README](https://g.hz.netease.
 
 You can use kubectl to check if everything works correctly:
 
-```
+```bash
 kubectl get pod -n horizon
 kubectl get pod -n tekton-pipelines
 ```

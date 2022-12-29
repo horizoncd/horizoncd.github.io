@@ -1,4 +1,7 @@
-# IDP
+---
+title: IDP
+toc_max_heading_level: 6
+---
 
 An IDP, or Identity Provider, is a service that is responsible for authenticating users in a system that uses the OpenID Connect (OIDC) protocol. In the context of Horizon, the IDP is used to authenticate users when they log in to the system. Horizon does not store user information itself, but instead relies on the IDP to provide the necessary information about the user.
 

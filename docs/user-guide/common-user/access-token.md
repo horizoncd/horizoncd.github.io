@@ -1,4 +1,7 @@
-## Access token
+---
+title: Access Token
+toc_max_heading_level: 6
+---
 
 An access token is an access credential with a specific scope and role that helps you authenticate when calling an horizon API. You can create it quickly, revoke it, or let it expire automatically by setting an expiration time. You can integrate it into CI or scripts when you need to invoke the Horizon interface.
 
@@ -9,7 +12,7 @@ Horizon offers two types of access tokens：
 
 The two differ only slightly in the scope of resources authorized, let's take the example of creating a resource access token and see how to use it.
 
-### Create a resource access token
+## Create a resource access token
 
 On the Resource Home page, you can create it in Settings->Access Token, which contains the following：
 
@@ -22,13 +25,13 @@ After creation, the token and copy button will appear below the "Add" button, an
 
 You need to save the accesss token as soon as possible, once the page is refreshed, the token content will no longer be visible.
 
-### Scope vs Role
+## Scope vs Role
 
 Both are used to restrict the resources that the access token can access, and the final permission of the token depends on the intersection of the two.
 
 scope is an attribute of access token while role is an attribute of member. We require that the token must be associated with a certain user, so when a resource access token is created, a bot account and member are created with it and bound to the specified role.
 
-### Default scopes
+## Default scopes
 
 The following scopes are provided by horizon by default:
 
@@ -41,10 +44,10 @@ The following scopes are provided by horizon by default:
 | clusters:read-only      | Read-only permissions for clusters and subresources.      |
 | clusters:read-write     | Read-write permissions for clusters and subresources.     |
 
-### Expireation and revoke
+## Expireation and revoke
 
 On the right side of the token list, click "delete" to destroy it. If you specify an expiration time when creating a token, the token will not be available for further use after the specified date.
 
-### Token Usage
+## Token Usage
 
 You can refer to How to use horizon api

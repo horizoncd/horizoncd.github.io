@@ -1,3 +1,8 @@
+---
+title: Kubernetes
+toc_max_heading_level: 6
+---
+
 Multi-cloud management capabilities are essential for the CI&CD platform, and Horizon has the ability to manage Kubernetes in both private and public cloud.
 
 ## View the Kubernetes list
@@ -26,7 +31,7 @@ See all details associated with a specific kubernetes.
 
 Each kubernetes contains the following sections.
 
-#### Kubernetes information
+### Kubernetes information
 
 This section contains basic kubernetes information.
 
@@ -39,7 +44,7 @@ This section contains basic kubernetes information.
 * Kubeconfig - Configuration file for accessing Kubernetes.
 * Status - Show whether the kubernetes has been disabled.
 
-#### Tags
+### Tags
 
 Tag is a kind of powerful and flexible tool to organize the association of different entities. In Horizon, we design the tag system to associate kubernetes and groups.
 

@@ -1,4 +1,6 @@
-# Using the API
+---
+title: Using the API
+---
 
 ## Authentication
 

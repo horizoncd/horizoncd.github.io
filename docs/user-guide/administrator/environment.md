@@ -1,3 +1,7 @@
+---
+title: Environment
+toc_max_heading_level: 6
+---
 ## What are Environments?
 
 Software development teams use Environments to create "stages" as they progress apps through the development process. Different environments often mean different stability requirements and service assurance capabilities.
