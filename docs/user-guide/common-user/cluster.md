@@ -5,14 +5,18 @@ toc_max_heading_level: 6
 
 ## What is a cluster
 
-一个cluster对应了一个gitops仓库，以及k8s上的一系列资源。gitops仓库中储存了渲染template需要的配置，通过[chart dependency](https://helm.sh/docs/helm/helm_dependency/)的方式引用到了相应模板，部署时Horizon调用Argocd从gitops仓库拉取相应配置并渲染template，最后应用到kubernetes中。
+A cluster corresponds to a GitOps repository and a series of resources on Kubernetes. The GitOps repository stores the configuration needed to render the templates, and the templates are referenced through [chart dependencies](https://helm.sh/docs/helm/helm_dependency/). When deploying, Horizon uses Argocd to pull the relevant configuration from the GitOps repository and render the templates, which are then applied to Kubernetes.
 
-所以cluster = gitops repo + kubernetes resources
+Therefore, a cluster is equal to a GitOps repository + Kubernetes resources.
 
 ## Create a Cluster
 
 1. [Create an Application](/docs/user-guide/common-user/application#create-an-application)
-2. 进入创建的application
-3. 点击右上角的**New cluster**
-4. 根据提示填写相应的配置
-5. 点击**Submit**
+2. Enter the application you created.
+3. Click on **New cluster** in the top right corner.
+4. Fill in the required configuration according to the prompts.
+5. Click on **Submit**.
+
+## Management
+
+For more management operations, please refer to [Deploy and Pod Management](/docs/user-guide/common-user/deploy-and-pod-management)
