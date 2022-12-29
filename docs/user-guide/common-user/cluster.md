@@ -3,20 +3,34 @@ title: Cluster
 toc_max_heading_level: 6
 ---
 
-## What is a cluster
+## Clusters
+A cluster is a deployment instance of the application in the Horizon context. You can deploy your cluster to various environments (e.g. online, test etc...) and regions. The cluster inherits the configuration of the application, and of course, you can modify most of the configuration and grant different permissions of the cluster to different members. The following features are provide: 
+* viewing pipeline histories and details
+* providing rich monitoring abilities
 
-A cluster corresponds to a GitOps repository and a series of resources on Kubernetes. The GitOps repository stores the configuration needed to render the templates, and the templates are referenced through [chart dependencies](https://helm.sh/docs/helm/helm_dependency/). When deploying, Horizon uses Argocd to pull the relevant configuration from the GitOps repository and render the templates, which are then applied to Kubernetes.
 
-Therefore, a cluster is equal to a GitOps repository + Kubernetes resources.
+## Create clusters
+From the application page, you can click **New cluster** button to create a new cluster. The following table illustrates the additional parameters of clusters over applications: 
 
-## Create a Cluster
+|  Parameter  |                                    Description                                   | Note |
+|:-----------:|:--------------------------------------------------------------------------------:|:----:|
+| Environment |              Environment is a logical concept of associated regions              |      |
+|   Region    |    Region refers to the deployment destination for applications and clusters     |      |
+|  Duration   |   The duration of the cluster, the expired cluster will be automatically freed   |      |
 
-1. [Create an Application](/docs/user-guide/common-user/application#create-an-application)
-2. Enter the application you created.
-3. Click on **New cluster** in the top right corner.
-4. Fill in the required configuration according to the prompts.
-5. Click on **Submit**.
 
-## Management
+## Copy clusters
+From the application page, you can select a cluster and click **Copy cluster** button to duplicate it. You can also edit the cluster parameters when copying clusters.
 
-For more management operations, please refer to [Deploy and Pod Management](/docs/user-guide/common-user/deploy-and-pod-management)
+
+## Edit clusters
+1. click into your cluster in the application page
+2. click on **More** and select **Edit** on the right side of the cluster page
+3. do and submit your changes.
+
+
+## Delete clusters
+1. click into your cluster in the application page
+2. click on **More** and select **Delete** on the right side of the cluster page
+3. confirm your deletion.
+> **Note that** clusters cannot be deleted until they are freed.
