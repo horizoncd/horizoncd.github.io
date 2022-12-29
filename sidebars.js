@@ -42,23 +42,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Concepts',
-      collapsed: false,
-      items: [
-        {
-          type: 'doc',
-          id: 'concepts/overview',
-          label: 'Overview',
-        },
-        {
-          type: 'doc',
-          id: 'concepts/basics',
-          label: 'Basic Concepts',
-        }
-      ],
-    },
-    {
-      type: 'category',
       label: 'User Guide',
       collapsed: false,
       items: [

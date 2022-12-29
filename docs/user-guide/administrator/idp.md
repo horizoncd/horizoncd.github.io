@@ -7,8 +7,6 @@ An IDP, or Identity Provider, is a service that is responsible for authenticatin
 
 ## Adding an IDP
 
-To add an IDP:
-
 1. Generate an application ID and secret in the IDP system.
 2. Click **more** at the top of the page.
 3. Select the **admin** option.
@@ -21,6 +19,16 @@ To add an IDP:
 10. Test the OIDC configuration by attempting to [link](./user-management.md#modify-oidc-link) with the new configuration in your personal space.
 
 If the IDP system does not support discovery service, you can omit the discovery endpoint and manually enter the other information. It is important to note that if multiple IDPs are configured, users will need to manually link to the new IDP rather than logging in directly, as this will result in two different accounts in Horizon.
+
+### Gitlab as IDP
+
+The following picture demonstrate how to add GitLab as an IDPbelow show how to add.
+
+<img src="/image/idp_add.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px"}} /><br /><br />
+
+If you don't have a discovery endpoint for your OIDC provider, you can manually specify the authorization endpoint, userinfo endpoint, and issuer for your provider.
+
+<img src="/image/discovery_field.png" style={{boxShadow: "10px 5px 5px grey"}} />  
 
 ## Deleting an IDP
 
