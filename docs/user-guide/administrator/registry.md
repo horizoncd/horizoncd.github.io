@@ -1,3 +1,8 @@
+---
+title: Registry
+toc_max_heading_level: 6
+---
+
 Registry is an essential part of CI&CD system. We use registry to deliver our applications. And registry guarantees the requirements of immutable infrastructure.
 
 ## View the Registry list

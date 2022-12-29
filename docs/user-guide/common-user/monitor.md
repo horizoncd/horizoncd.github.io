@@ -1,3 +1,8 @@
+---
+title: Monitor
+toc_max_heading_level: 6
+---
+
 Observability of cloud native usually includes logs, metrics, and traces. Logs and traces are not within the scope of this article. Let's see what abilities Horizon provides for Monitoring(metrics).
 
 Horizon is a standardized cloud native delivery platform, so it is natural for us to choose the Prometheus monitoring stack as the foundation of our monitoring capabilities. Horizon itself does not deliver the Prometheus monitoring stack, so users need to deploy Prometheus in advance. We recommend using [prometheus-operator](https://prometheus-operator.dev/) to deliver the Prometheus monitoring stack in a declarative manner, which will integrate well with Horizon's template system.

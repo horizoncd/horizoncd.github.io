@@ -31,12 +31,12 @@ const sidebars = {
         {
           type: 'doc',
           id: 'tutorials/how-to-install',
-          label: 'how to install',
+          label: 'How to Install',
         },
         {
           type: 'doc',
           id: 'tutorials/how-to-deploy-your-first-workload',
-          label: 'how to deploy your first workload',
+          label: 'How to Deploy Your First Workload',
         }
       ],
     },
@@ -48,12 +48,12 @@ const sidebars = {
         {
           type: 'doc',
           id: 'concepts/overview',
-          label: 'overview',
+          label: 'Overview',
         },
         {
           type: 'doc',
           id: 'concepts/basics',
-          label: 'basic concepts',
+          label: 'Basic Concepts',
         }
       ],
     },
@@ -70,27 +70,27 @@ const sidebars = {
             {
               type: 'doc',
               id: 'user-guide/administrator/idp',
-              label: 'identity providor',
+              label: 'Identity Providor',
             },
             {
               type: 'doc',
               id: 'user-guide/administrator/environment',
-              label: 'environments',
+              label: 'Environments',
             },
             {
               type: 'doc',
               id: 'user-guide/administrator/registry',
-              label: 'registries',
+              label: 'Registries',
             },
             {
               type: 'doc',
               id: 'user-guide/administrator/kubernetes',
-              label: 'kubernetes',
+              label: 'Kubernetes',
             },
             {
               type: 'doc',
               id: 'user-guide/administrator/user-management',
-              label: 'users',
+              label: 'User Management',
             }
           ],
         },
@@ -102,57 +102,57 @@ const sidebars = {
             {
               type: 'doc',
               id: 'user-guide/common-user/group',
-              label: 'group',
+              label: 'Group',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/application',
-              label: 'application',
+              label: 'Application',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/cluster',
-              label: 'cluster',
+              label: 'Cluster',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/deploy-and-pod-management',
-              label: 'deploy and manage pods',
+              label: 'Deploy and Manage Pods',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/monitor',
-              label: 'monitor',
+              label: 'Monitor',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/member',
-              label: 'member',
+              label: 'Member',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/access-token',
-              label: 'access Token',
+              label: 'Access Token',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/template',
-              label: 'template',
+              label: 'Template',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/oauth-app',
-              label: 'oauth app',
+              label: 'Oauth App',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/webhook',
-              label: 'webhook',
+              label: 'Webhook',
             },
             {
               type: 'doc',
               id: 'user-guide/common-user/user-space',
-              label: 'user space',
+              label: 'User Space',
             }
           ],
         },
@@ -171,24 +171,24 @@ const sidebars = {
             {
               type: 'doc',
               id: 'reference/api/use-the-apis',
-              label: 'use the API',
+              label: 'Use APIs',
             },
             {
               type: 'doc',
               id: 'reference/api/apis',
-              label: 'horizon apis',
+              label: 'Horizon APIs',
             }
           ]
         },
         {
           type: 'category',
-          label: 'template',
+          label: 'Template',
           collapsed: false,
           items: [
             {
               type: 'doc',
               id: 'reference/template/specification',
-              label: 'specification',
+              label: 'Specification',
             }
           ]
         }

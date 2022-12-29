@@ -1,4 +1,7 @@
-# User Space
+---
+title: User Space
+toc_max_heading_level: 6
+---
 
 User Space is a place where you can manage all of your personal belongings.
 
