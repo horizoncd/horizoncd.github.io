@@ -31,7 +31,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'docs',
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -73,12 +73,12 @@ const config = {
             type:'localeDropdown',
             position: 'right',
           },
-          {
-            type: 'doc',
-            docId: 'tutorials/how-to-install',
-            position: 'left',
-            label: 'Docs',
-          },
+          // {
+          //   type: 'doc',
+          //   docId: 'tutorials/how-to-install',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
           // {
           //   to: '/blog', 
           //   label: 'Blog', 
