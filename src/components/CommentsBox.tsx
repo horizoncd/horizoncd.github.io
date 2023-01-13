@@ -8,7 +8,7 @@ export default function CommentsBox(props: {}) {
 
 return <Giscus
         id="comments"
-        repo="horizoncd/horizoncd"
+        repo="horizoncd/horizoncd.github.io"
         repoId="R_kgDOIxMl6g"
         category="Docs Comments"
         categoryId="DIC_kwDOIxMl6s4CTkT8"

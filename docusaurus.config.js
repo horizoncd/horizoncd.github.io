@@ -39,7 +39,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/horizoncd/docs/blob/master/docs',
+            'https://github.com/horizoncd/horizoncd.github.io/blob/master/docs',
         },
         blog: {
           showReadingTime: true,
@@ -48,7 +48,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/horizoncd/docs/blob/master/blog',
+            'https://github.com/horizoncd/horizoncd.github.io/blob/master/blog',
           feedOptions: {
             type: 'all',
             copyright: `CopyrightCopyright © ${new Date().getFullYear()} Facebook, Inc.`
