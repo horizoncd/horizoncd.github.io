@@ -8,14 +8,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Horizon',
   tagline: 'Horizon is a cloud-native application delivery platform',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://horizoncd.github.io',
   baseUrl: '/',
+  projectName: 'horizoncd.github.io',
+  organizationName: 'horizoncd',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-
-  organizationName: 'horizoncd', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -38,7 +39,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://g.hz.netease.com/music-cloud-native/horizon/horizon-docs/-/blob/master',
+            'https://github.com/horizoncd/docs/blob/master/docs',
         },
         blog: {
           showReadingTime: true,
@@ -47,7 +48,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://g.hz.netease.com/music-cloud-native/horizon/horizon-docs/-/blob/master',
+            'https://github.com/horizoncd/docs/blob/master/blog',
           feedOptions: {
             type: 'all',
             copyright: `CopyrightCopyright © ${new Date().getFullYear()} Facebook, Inc.`
@@ -66,7 +67,7 @@ const config = {
       navbar: {
         logo: {
           alt: 'My Site Logo',
-          src: 'img/horizon.png',
+          src: 'img/horizon.svg',
         },
         items: [
           {
