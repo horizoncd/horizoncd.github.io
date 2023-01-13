@@ -9,9 +9,8 @@ export default function Hello() {
 
       <header class="page-header" role="banner">
         <h1 class="project-name">Horizon</h1>
-        <h2 class="project-tagline">Horizon is a  cloud-native application delivery platform.  The platform team can quickly support  application delivery based on kubernetes with best practice.</h2>
 
-        <a href="https://github.com/horizoncd/page" class="btn">View on GitHub</a>
+        <a href="https://github.com/horizoncd/horizon" class="btn">View on GitHub</a>
         <a href="/docs" class="btn">Docs</a>
 
 
