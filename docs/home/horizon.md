@@ -36,7 +36,7 @@ We Also Provide Product Features, Like Template Management, Kubernetes Managemen
 PlatForm Team can easily set up  through the horizon web ui.
 
 ### Architecture
-![arch](horizon-opensource-arch.jpg)
+![arch](/image/horizon-opensource-arch.jpg)
   
 #### Horizon-Core
 The Horizon Core Server is the Rest Server which export the OpenAPIs consume by the Web UI, CLI, and other systems. it also provides features like:
