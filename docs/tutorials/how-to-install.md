@@ -45,10 +45,10 @@ Assuming you have installed `Homebrew` and `kubectl`, you need to do the followi
 brew install colima
 
 # Launch Docker runtime by default
-colima start --cpu 4 --memory 8
+colima start --cpu 4 --memory 12
 
 # Or create VM with Rosetta 2 emulation (for MacOS Ventura)
-colima start --cpu 4 --memory 8 --vm-type=vz --vz-rosetta
+colima start --cpu 4 --memory 12 --vm-type=vz --vz-rosetta
 ```
 
 2. Prepare `docker` client

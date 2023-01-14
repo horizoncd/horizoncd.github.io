@@ -46,7 +46,7 @@ The configurations is as follows:
    
    :::tip
    
-   If your `kubernetes` is deployed by `Kind`, the kubeconfig is under `/etc/kubernetes/admin.conf`.
+   If your `kubernetes` is deployed by `Kind`, docker login kind node to get the kubeconfig, the kubeconfig is under kind node's filesystem, file location: `/etc/kubernetes/admin.conf`.
    
    :::
 
