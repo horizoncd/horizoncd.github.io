@@ -37,6 +37,11 @@ const sidebars = {
           type: 'doc',
           id: 'tutorials/how-to-deploy-your-first-workload',
           label: 'How to Deploy Your First Workload',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/custom-ci',
+          label: 'Customize CI',
         }
       ],
     },

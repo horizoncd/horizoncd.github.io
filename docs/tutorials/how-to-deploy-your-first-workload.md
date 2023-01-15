@@ -97,6 +97,7 @@ Now create and administer a new group:
 3. Groups need bound kubernetes which is used to deploy your applications by tags. Now, link kubernetes resources to your new group: 
    1. Enter your group page, click on **Settings** in the left sidebar and select **Advance**.
    2. click on **Add tags** and fill in the tag your kubernetes holds.
+![group-link-k8s](/image/group-link-k8s.png)
 
 ## 7. Create an application
 
