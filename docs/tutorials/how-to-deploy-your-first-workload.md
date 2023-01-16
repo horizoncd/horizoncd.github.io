@@ -5,7 +5,7 @@ toc_max_heading_level: 6
 
 This section describes how to deploy your first workload step by step. You can check out the demo video for a overview of Horizon CD.
 
-**Bibili**
+**Bilibili**
 <iframe src="//player.bilibili.com/player.html?aid=307659880&bvid=BV1fA411Z7GT&cid=963860081&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="95%" height="600"> </iframe>
 
 **YouTube**
