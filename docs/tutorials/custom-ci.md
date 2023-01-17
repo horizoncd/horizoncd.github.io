@@ -8,7 +8,7 @@ Horizon CI works based on [tekton pipeline](https://github.com/tektoncd/pipeline
 ![pipeline](/image/pipeline.png)
 * Git step: use token to pull source code.
 * Compile step: compile and package the source code, such as `mvn clean package`, `go build`, `docker build`, etc.
-* Image step: build image from dockerfile to store the artifact and push it to registry.
+* Image step: build image from dockerfile to store artifact and push it to registry.
 * Deploy step: assemble pipeline output and callback horizon api.
 
 ## How to customize your CI
@@ -180,16 +180,16 @@ tektonci-resources:
   extraVolumeMounts:
       # persistentVolumeClaim
     - name: persistent-volume
-      mountPath: /persistent_volume
       existingClaim: ci-claim
+      mountPath: /persistent_volume
       readOnly: true
       # hostPath
-    - name: logs
-      hostPath: /root/log
-      subPath: error_log
-      mountPath: /root/log
-      # emptyDir
+    - name: m2
+      hostPath: /root/.m2
+      mountPath: /root/.m2
+      # emptyDir, if neither persistentVolumeClaim nor hostPath
     - name: maven-repository
-      mountPath: /root/.m2/repository
+      mountPath: /root/.m2
+      subPath: repository
       readOnly: false
 ```
