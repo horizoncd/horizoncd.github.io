@@ -18,9 +18,9 @@ You can use [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) to run a loc
 The following table lists the minimum and recommended hardware configurations for deploying Horizon.
 
 | Resource | Minimum | Recommended |
-| -------- | ------- | ----------- |
+|----------|---------|-------------|
 | CPU      | 4 CPU   | 8 CPU       |
-| Mem      | 8 GB    | 16 GB       |
+| Mem      | 12 GB   | 16 GB       |
 | Disk     | 40 GB   | 80 GB       |
 
 ### Requirements
@@ -33,15 +33,15 @@ The following table lists the minimum and recommended hardware configurations fo
 
 ## Installation Process
 
-We use helm to organize Horizon's whole dependencies, which means you can launch a whole CI&CD system by Helm.
+We use `helm` to organize Horizon's whole dependencies, which means you can launch a whole CI&CD system by Helm.
 
-**Kind on Mac**
+**Mac**
 
 Assuming you have installed `Homebrew` and `kubectl`, you need to do the following steps:
 
-1. Prepare container runtime by using `colima`
+1. Prepare container runtime by `colima`
 
-```
+```bash
 brew install colima
 
 # Launch Docker runtime by default
@@ -53,13 +53,19 @@ colima start --cpu 4 --memory 12 --vm-type=vz --vz-rosetta
 
 2. Prepare `docker` client
 
-```
+```bash
 brew install docker
 ```
 
-3. Deploy a `kubernetes` cluster by `Kind`
+3. Deploy a `kubernetes` cluster
 
-```
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="Kind" label="Kind" default>
+
+```bash
 # install kind
 brew install kind
 
@@ -85,25 +91,74 @@ nodes:
         protocol: TCP
 EOF
 
-# install k8s
+# install a k8s
 kind create cluster --image=kindest/node:v1.19.16 --config=kind.yaml
-```
 
-4. Install `ingress-nginx` by helm
-
-```
+# Install ingress-nginx by helm
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install my-ingress-nginx ingress-nginx/ingress-nginx --version 3.21.0 --set controller.hostNetwork=true
 ```
+#### Known Issues
 
-5. Install `Horizon` by helm
+- Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
+
+```bash
+⎈ |kind-kind:horizoncd)➜  ~ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
+a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
+(⎈ |kind-kind:horizoncd)➜  ~ docker exec -it a9902c293760 bash
+root@kind-control-plane:/# echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" >> /etc/resolv.conf
+```
+
+- `Harbor` installed by `Horizon` uses an auto-generated tls certificate which will cause `X509` problem when pulling image on host, so you need to add some contents to the config of `Containerd` and restart it.
+
+```bash
+⎈ |kind-kind:horizoncd)➜  ~ docker ps
+CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
+a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
+(⎈ |kind-kind:horizoncd)➜  ~ docker exec -it a9902c293760 bash
+root@kind-control-plane:/# echo '[plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.horizoncd.svc.cluster.local".tls]
+  insecure_skip_verify = true' >> /etc/containerd/config.toml
+root@kind-control-plane:/# systemctl restart containerd
+```
+  </TabItem>
+  <TabItem value="Minikube" label="Minikube">
+
+```bash
+# install minikube
+brew install minikube
+
+# install a k8s
+minikube start --container-runtime=docker --driver=docker --kubernetes-version=v1.19.16 --cpus=4 --memory=12000 --ports=80:80 --ports=443:443
+
+# enable ingress-nginx addons
+minikube addons enable ingress
+```
+#### Known Issues
+
+- Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
+
+```bash
+(⎈|minikube:horizoncd)➜  ~ kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'
+10.96.0.10
+(⎈|minikube:horizoncd)➜  ~ docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED        STATUS        PORTS                                                                                                                                                                                                                                                                                                     NAMES
+d5b8bad67208   kicbase/stable:v0.0.36   "/usr/local/bin/entr…"   21 hours ago   Up 21 hours   0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp, 0.0.0.0:49167->22/tcp, :::49167->22/tcp, 0.0.0.0:49166->2376/tcp, :::49166->2376/tcp, 0.0.0.0:49165->5000/tcp, :::49165->5000/tcp, 0.0.0.0:49164->8443/tcp, :::49164->8443/tcp, 0.0.0.0:49163->32443/tcp, :::49163->32443/tcp   minikube
+(⎈|minikube:horizoncd)➜  ~ docker exec -it d5b8bad67208 bash
+root@minikube: echo "nameserver 10.96.0.10" >> /etc/resolv.conf
+```
+
+  </TabItem>
+</Tabs>
+
+4. Install `Horizon` by helm
 
 ```
 helm repo add horizon https://horizoncd.github.io/helm-charts
 helm install horizon horizon/horizon -n horizoncd --version 2.0.1 --create-namespace
 ```
 
-6. Check service status of `Horizon`. If everything goes well, you can first use `kubectl` to check if all pods are running well.
+5. Check service status of `Horizon`. If everything goes well, you can first use `kubectl` to check if all pods are running well.
 
 ```
 (⎈ |kind-kind:horizoncd)➜  ~ kubectl get pod -nhorizoncd
@@ -143,37 +198,13 @@ If all pods are healthy, you can enter Horizon by visiting the url: http://horiz
 
 Next, please go to [how to deploy your fist workload](/docs/tutorials/how-to-deploy-your-first-workload) to experience this amazing CI&CD system more closely.
 
-### Known Issues
-
-- Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
-
-```
-⎈ |kind-kind:horizoncd)➜  ~ docker ps
-CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
-(⎈ |kind-kind:horizoncd)➜  ~ docker exec -it a9902c293760 bash
-root@kind-control-plane:/# echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" >> /etc/resolv.conf
-```
-
-- `Harbor` installed by `Horizon` uses an auto-generated tls certificate which will cause `X509` problem when pulling image on host, so you need to add some contents to the config of `Containerd` and restart it.
-
-```
-⎈ |kind-kind:horizoncd)➜  ~ docker ps
-CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
-(⎈ |kind-kind:horizoncd)➜  ~ docker exec -it a9902c293760 bash
-root@kind-control-plane:/# echo '[plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.horizoncd.svc.cluster.local".tls]
-  insecure_skip_verify = true' >> /etc/containerd/config.toml
-root@kind-control-plane:/# systemctl restart containerd
-```
-
 ## Horizon Components
 
 The table below lists the key components that are deployed when you deploy Horizon.
 
 | Component   | Version                                                               |
-| ----------- | --------------------------------------------------------------------- |
-| Gitlab      | `15.5.1-ce.0`                                                         |
+|-------------|-----------------------------------------------------------------------|
+| Gitlab      | `13.11.7-ce.0`                                                        |
 | Argo-cd     | `v2.4.11`                                                             |
 | Tekton      | dashboard:` v0.11.1`<br/>pipeline: `v0.18.1`<br />triggers: `v0.11.2` |
 | Chartmuseum | `v0.15.0`                                                             |
