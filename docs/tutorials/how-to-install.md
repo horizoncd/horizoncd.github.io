@@ -33,7 +33,7 @@ The following table lists the minimum and recommended hardware configurations fo
 
 ## Installation Process
 
-We use `helm` to organize Horizon's whole dependencies, which means you can launch a whole CI&CD system by Helm.
+We use `helm` to organize Horizon's whole dependencies, which means you can launch a whole system by Helm.
 
 **Mac**
 
@@ -91,10 +91,12 @@ nodes:
         protocol: TCP
 EOF
 
-# install a k8s
+# kubernetes installation
 kind create cluster --image=kindest/node:v1.19.16 --config=kind.yaml
 
-# Install ingress-nginx by helm
+# waiting for the new kubernetes cluster to be running healthily
+
+# install ingress-nginx by helm
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm install my-ingress-nginx ingress-nginx/ingress-nginx --version 3.21.0 --set controller.hostNetwork=true
 ```
@@ -128,8 +130,10 @@ root@kind-control-plane:/# systemctl restart containerd
 # install minikube
 brew install minikube
 
-# install a k8s
+# kubernetes installation
 minikube start --container-runtime=docker --driver=docker --kubernetes-version=v1.19.16 --cpus=4 --memory=12000 --ports=80:80 --ports=443:443
+
+# waiting for the new kubernetes cluster to be running healthily
 
 # enable ingress-nginx addons
 minikube addons enable ingress
@@ -196,7 +200,7 @@ If all pods are healthy, you can enter Horizon by visiting the url: http://horiz
 
 <img src="/image/home.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px"}} />
 
-Next, please go to [how to deploy your fist workload](/docs/tutorials/how-to-deploy-your-first-workload) to experience this amazing CI&CD system more closely.
+Next, please go to [how to deploy your fist workload](/docs/tutorials/how-to-deploy-your-first-workload) to experience this amazing system more closely.
 
 ## Horizon Components
 
