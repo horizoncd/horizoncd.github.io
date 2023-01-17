@@ -22,7 +22,7 @@ The initial password for the admin account is auto-generated when you perform th
 
 > Now, you need create some **required system resources** to set up your devops platform. 
 
-## 2. Create a registry
+## 2. Add a registry
 
 1. Click on the **More** option in the top of the home page and select **Admin**.
 2. Click on the **Registries** option in the left-side menu.
@@ -39,7 +39,7 @@ The configurations are as follows:
 | Skip TLS | Yes                                        |
 | Type     | harbor                                     |
 
-## 3. Create a kubernetes cluster
+## 3. Add a kubernetes cluster
 
 1. Click on the **More** option in the top of the home page and select **Admin**.
 

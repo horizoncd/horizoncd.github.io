@@ -4,20 +4,20 @@ toc_max_heading_level: 6
 ---
 
 ## How does Horizon CI work
-Horizon CI works based on [tekton pipeline](https://github.com/tektoncd/pipeline) and [tekton triggers](https://github.com/tektoncd/triggers). A tekton pipeline will be triggered for a incoming buildDeploy request to perform the typical steps, such as compiling and pushing image. Then, the pipeline output that holds artifact image url and other information will be returned to Horizon core by callback. Horizon CI pipeline includes two tasks that is shown below:
+Horizon CI works based on [tekton pipeline](https://github.com/tektoncd/pipeline) and [tekton triggers](https://github.com/tektoncd/triggers). A tekton pipeline will be triggered for an incoming buildDeploy request to perform typical steps, such as compiling and pushing image. Then, the pipeline output that holds artifact image url and other information will be returned to Horizon core by calling back http post request. Horizon CI pipeline includes four steps that is shown below:
 ![pipeline](/image/pipeline.png)
-* Git step: use token to pull user's source code.
-* Compile step: compile and package the source code, such as `mvn clean package`.
-* image step: build dockerfile to store the artifact and push the generated image to registry.
-* deploy step: assemble pipeline output and callback horizon api.
+* Git step: use token to pull source code.
+* Compile step: compile and package the source code, such as `mvn clean package`, `go build`, `docker build`, etc.
+* Image step: build image from dockerfile to store the artifact and push it to registry.
+* Deploy step: assemble pipeline output and callback horizon api.
 
 ## How to customize your CI
-**Custom CI is supported partly on Horizon now. In order to custom CI, you may prepare two parts of modification.**
+**In order to customize CI, you may prepare two parts of modification.**
 
 ### Build config
 Build config holds user's build configurations of application or cluster, which is characterized as json object `pipelineJSONBlob` in pipeline.
 ![](/image/new-app-demo2.png)
-You can customize own build config based on [json schema](https://json-schema.org), which contains two parts: json schema and ui schema. Override them in values.yaml of [horizon chart](https://github.com/horizoncd/helm-charts), which has the following structure:
+You can customize your own build based on [json schema](https://json-schema.org) that contains two parts: json schema and ui schema. Override them in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml) of [horizon chart](https://github.com/horizoncd/helm-charts/tree/main/charts/horizon), which has the following structure:
 ``` yaml
 build_schema:
   build_json_schema: |
@@ -72,7 +72,7 @@ You can refer to [json schema](https://json-schema.org) and [json schema in hori
 
 
 ### Step scripts
-The step scripts in values.yaml also can be overrode to perform various pipelines according to user's build config above. The associated file structure is as follows:
+The step scripts in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml) also can be overridden to perform various pipelines according to user's build config above. The associated file structure is as follows:
 ``` yaml
 tektonci-resources:
   horizon:
@@ -100,7 +100,7 @@ The steps can retrieve the following build parameters from horizon core:
 | gitCommit        | git commit of revision                 |                                                              |
 | gitBranch        | git branch of revision                 |                                                              |
 | gitTag           | git tag of revision                    |                                                              |
-| pipelineJSONBlob | json string of build config            | you can parse it by json paser, such as `jq`                 |
+| pipelineJSONBlob | json string of build config            | you can parse it by json parser, such as `jq`                 |
 | imageURL         | artifact image url                     | the generated artifact image will be push to the url         |
 | pipelinerunID    | current pipelinerun ID in horizon core |                                                              |
 | requestID        | current request ID                     |                                                              |
@@ -112,7 +112,8 @@ echo "token: ${TOKEN}"
 ```
 
 ### Configurations
-1. If your script uses some tools that are not in the **default image**, you can override the images of build step in values.yaml. For example:
+#### Image of step
+If your script uses some tools that are not in the **default image**, you can override the images of build step in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml). For example:
 ``` yaml
 tektonci-resources:
   horizon:
@@ -126,7 +127,8 @@ tektonci-resources:
         deployStep: xxx
 ```
 
-2. Pulling user's source code with token is supported in the **default git step**. You can specify git repository domain and token in values.yaml. For example:
+#### Repository token
+Pulling user's source code with token is supported in the **default git step**. You can specify git repository domains and tokens in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml). For example:
 ``` yaml
 tektonci-resources:
   gitRepos:
@@ -139,7 +141,8 @@ tektonci-resources:
     ...
 ```
 
-3. You need **callback horizon api** `/apis/internal/v2/clusters/$CLUSTER_ID/deploy` with token to pass back the pipeline output you generate in your **custom deploy step script**. For example:
+#### Callback in deploy step
+You need **callback horizon api** `/apis/internal/v2/clusters/$CLUSTER_ID/deploy` with token to pass back the pipeline output you generate in your **custom deploy step script**. For example:
 ``` shell
 curl -k -sSL -X POST \
   -H "Content-Type: application/json" \
@@ -169,3 +172,24 @@ spec:
         image: {{ .Values.image }}
 ```
 which specifies `output.image` as the container image in deployment template.
+
+#### Volume Mounts
+You can configure `extraVolumeMounts` in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml) to mount volumes into step container. Volume type `persistentVolumeClaim`, `hostPath` and `emptyDir` (default) is supported. For example:
+``` yaml
+tektonci-resources:
+  extraVolumeMounts:
+      # persistentVolumeClaim
+    - name: persistent-volume
+      mountPath: /persistent_volume
+      existingClaim: ci-claim
+      readOnly: true
+      # hostPath
+    - name: logs
+      hostPath: /root/log
+      subPath: error_log
+      mountPath: /root/log
+      # emptyDir
+    - name: maven-repository
+      mountPath: /root/.m2/repository
+      readOnly: false
+```

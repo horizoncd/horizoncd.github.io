@@ -41,7 +41,7 @@ const sidebars = {
         {
           type: 'doc',
           id: 'tutorials/custom-ci',
-          label: 'Customize CI',
+          label: 'Custom CI',
         }
       ],
     },
