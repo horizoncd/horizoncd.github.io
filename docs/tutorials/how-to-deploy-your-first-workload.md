@@ -3,7 +3,7 @@ title: How to deploy your first workload
 toc_max_heading_level: 6
 ---
 
-This section describes how to deploy your first workload step by step. You can check out the demo video for a overview of Horizon CD.
+This section describes how to deploy your first workload step by step. You can check out the demo video for an overview of Horizon CD.
 
 **Bilibili**
 <iframe src="//player.bilibili.com/player.html?aid=307659880&bvid=BV1fA411Z7GT&cid=963860081&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="95%" height="600"> </iframe>
@@ -13,7 +13,7 @@ This section describes how to deploy your first workload step by step. You can c
 
 ## 1. Login Horizon CD
 
-The initial password for the admin account is auto-generated when you perform the installation. Using the email `admin@cloudnative.com` and the password, login to Horizon CD.
+The initial password for the admin account is auto-generated when you perform the installation. Using the email `admin@cloudnative.com` and the password `123456`, login to Horizon CD.
 
 1. Open Horizon CD's home page in your browser and click on **Login**.
    ![home](/image/home.png)
@@ -29,7 +29,7 @@ The initial password for the admin account is auto-generated when you perform th
 3. Click **Add registry** to enter the page below. Fill in the registry information below and click **Submit** to add it.
    ![new-harbor-demo](/image/new-harbor-demo.png)
 
-The configurations is as follows:
+The configurations are as follows:
 
 | Name     | local                                      |
 | -------- | ------------------------------------------ |
@@ -50,7 +50,7 @@ The configurations is as follows:
    
    :::tip
    
-   If your `kubernetes` is deployed by `Kind`, docker login kind node to get the kubeconfig, the kubeconfig is under kind node's filesystem, file location: `/etc/kubernetes/admin.conf`.
+   The value of `Domain` field will be https://kubernetes.default.svc if you want to deploy the workloads on your local K8s. If your `kubernetes` is deployed by `Kind`, docker login kind node to get the kubeconfig, the kubeconfig is under kind node's filesystem, file location: `/etc/kubernetes/admin.conf`.
    
    :::
 

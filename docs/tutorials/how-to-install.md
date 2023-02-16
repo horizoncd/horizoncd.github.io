@@ -159,7 +159,7 @@ root@minikube: echo "nameserver 10.96.0.10" >> /etc/resolv.conf
 
 ```
 helm repo add horizon https://horizoncd.github.io/helm-charts
-helm install horizon horizon/horizon -n horizoncd --version 2.0.1 --create-namespace
+helm install horizon horizon/horizon -n horizoncd --version 2.0.3 --create-namespace
 ```
 
 5. Check service status of `Horizon`. If everything goes well, you can first use `kubectl` to check if all pods are running well.
