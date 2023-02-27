@@ -262,7 +262,7 @@ The version of the template, which is currently 0.0.2.
   ```
 * **pipeline**  
   * **pipeline-output.yaml**  
-    The pipeline-output file contains the output of CI stage, you can control the output content by [customizing the CI script](../../user-guide/administrator/custom-ci.md). The default CI script will output the address of the built image and git info.
+    The pipeline-output file contains the output of CI stage, you can control the output content by [customizing the CI script](../../tutorials/custom-ci.md). The default CI script will output the address of the built image and git info.
 
     | Parameter            | Meaning                                                                                |
     | -------------------- | -------------------------------------------------------------------------------------- |
@@ -281,7 +281,7 @@ The version of the template, which is currently 0.0.2.
         url: https://github.com/horizoncd/springboot-source-demo.git
     ```
   * **pipeline.yaml**  
-    The pipeline.yaml file contains configuration for CI stage, the administrator can [customize the json schema of CI stage](../../user-guide/administrator/custom-ci.md) to extend more build types.
+    The pipeline.yaml file contains configuration for CI stage, the administrator can [customize the json schema of CI stage](../../tutorials/custom-ci.md) to extend more build types.
 
     | Parameter                  | Meaning                                                            |
     | -------------------------- | ------------------------------------------------------------------ |

@@ -22,7 +22,7 @@ The initial password for the admin account is auto-generated when you perform th
 
 > Now, you need create some **required system resources** to set up your devops platform. 
 
-## 2. Create a registry
+## 2. Add a registry
 
 1. Click on the **More** option in the top of the home page and select **Admin**.
 2. Click on the **Registries** option in the left-side menu.
@@ -39,7 +39,7 @@ The configurations are as follows:
 | Skip TLS | Yes                                        |
 | Type     | harbor                                     |
 
-## 3. Create a kubernetes cluster
+## 3. Add a kubernetes cluster
 
 1. Click on the **More** option in the top of the home page and select **Admin**.
 
@@ -97,6 +97,7 @@ Now create and administer a new group:
 3. Groups need bound kubernetes which is used to deploy your applications by tags. Now, link kubernetes resources to your new group: 
    1. Enter your group page, click on **Settings** in the left sidebar and select **Advance**.
    2. click on **Add tags** and fill in the tag your kubernetes holds.
+![group-link-k8s](/image/group-link-k8s.png)
 
 ## 7. Create an application
 
