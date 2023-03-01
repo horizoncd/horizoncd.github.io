@@ -7,7 +7,7 @@ This section describes how to perform a new installation of Horizon.
 
 ## Prerequisites
 
-Horizon is built entirely on Kubernetes and has been fully tested on its v1.19.3 release.
+Horizon is built entirely on Kubernetes and has been fully tested on its v1.19.3 ~ v1.24.7 release.
 
 We are assuming you have a basic understanding of what the Kubernetes is and how it runs.
 
@@ -18,14 +18,14 @@ You can use [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) to run a loc
 The following table lists the minimum and recommended hardware configurations for deploying Horizon.
 
 | Resource | Minimum | Recommended |
-|----------|---------|-------------|
+| -------- | ------- | ----------- |
 | CPU      | 4 CPU   | 8 CPU       |
-| Mem      | 12 GB   | 16 GB       |
+| Mem      | 8 GB    | 16 GB       |
 | Disk     | 40 GB   | 80 GB       |
 
 ### Requirements
 
-* [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) cluster version 1.19.3 or later.
+* [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) cluster version 1.19.3 ~ v1.24.7.
 * Installed [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) command-line tool.
 * Have a [kubeconfig](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) file (default location is `~/.kube/config`).
 * Installed [helm](https://helm.sh/) command-line tool.
@@ -45,10 +45,10 @@ Assuming you have installed `Homebrew` and `kubectl`, you need to do the followi
 brew install colima
 
 # Launch Docker runtime by default
-colima start --cpu 4 --memory 12
+colima start --cpu 4 --memory 8
 
 # Or create VM with Rosetta 2 emulation (for MacOS Ventura)
-colima start --cpu 4 --memory 12 --vm-type=vz --vz-rosetta
+colima start --cpu 4 --memory 8 --vm-type=vz --vz-rosetta
 ```
 
 2. Prepare `docker` client
@@ -91,15 +91,16 @@ nodes:
         protocol: TCP
 EOF
 
-# kubernetes installation
+# kubernetes installation, you can specify any k8s version between v1.19.16 and v1.24.7
 kind create cluster --image=kindest/node:v1.19.16 --config=kind.yaml
 
 # waiting for the new kubernetes cluster to be running healthily
 
 # install ingress-nginx by helm
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install my-ingress-nginx ingress-nginx/ingress-nginx --version 3.21.0 --set controller.hostNetwork=true
+helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --version 4.1.4 --set controller.hostNetwork=true --set controller.watchIngressWithoutClass=true --create-namespace
 ```
+
 #### Known Issues
 
 - Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
@@ -123,21 +124,23 @@ root@kind-control-plane:/# echo '[plugins."io.containerd.grpc.v1.cri".registry.c
   insecure_skip_verify = true' >> /etc/containerd/config.toml
 root@kind-control-plane:/# systemctl restart containerd
 ```
-  </TabItem>
+
+</TabItem>
   <TabItem value="Minikube" label="Minikube">
 
 ```bash
 # install minikube
 brew install minikube
 
-# kubernetes installation
-minikube start --container-runtime=docker --driver=docker --kubernetes-version=v1.19.16 --cpus=4 --memory=12000 --ports=80:80 --ports=443:443
+# kubernetes installation, you can specify any k8s version between v1.19.16 and v1.24.7
+minikube start --container-runtime=docker --driver=docker --kubernetes-version=v1.19.16 --cpus=4 --memory=8000 --ports=80:80 --ports=443:443
 
 # waiting for the new kubernetes cluster to be running healthily
 
 # enable ingress-nginx addons
 minikube addons enable ingress
 ```
+
 #### Known Issues
 
 - Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
@@ -152,14 +155,14 @@ d5b8bad67208   kicbase/stable:v0.0.36   "/usr/local/bin/entr…"   21 hours ago 
 root@minikube: echo "nameserver 10.96.0.10" >> /etc/resolv.conf
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 4. Install `Horizon` by helm
 
 ```
 helm repo add horizon https://horizoncd.github.io/helm-charts
-helm install horizon horizon/horizon -n horizoncd --version 2.0.3 --create-namespace
+helm install horizon horizon/horizon -n horizoncd --version 2.1.0 --create-namespace
 ```
 
 5. Check service status of `Horizon`. If everything goes well, you can first use `kubectl` to check if all pods are running well.
@@ -207,10 +210,10 @@ Next, please go to [how to deploy your fist workload](/docs/tutorials/how-to-dep
 The table below lists the key components that are deployed when you deploy Horizon.
 
 | Component   | Version                                                               |
-|-------------|-----------------------------------------------------------------------|
+| ----------- | --------------------------------------------------------------------- |
 | Gitlab      | `13.11.7-ce.0`                                                        |
 | Argo-cd     | `v2.4.11`                                                             |
-| Tekton      | dashboard:` v0.11.1`<br/>pipeline: `v0.18.1`<br />triggers: `v0.11.2` |
+| Tekton      | dashboard:` v0.13.0`<br/>pipeline: `v0.28.0`<br />triggers: `v0.17.0` |
 | Chartmuseum | `v0.15.0`                                                             |
 | Grafana     | `8.4.6`                                                               |
 | Minio       | `2022.10.29-debian-11-r0`                                             |
