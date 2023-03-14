@@ -217,7 +217,7 @@ docker ps
 docker exec -it d5b8bad67208 bash
 
 # in container
-echo "nameserver 10.96.0.10" >> /etc/resolv.conf
+echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" > /etc/resolv.conf
 ```
 
 :::
