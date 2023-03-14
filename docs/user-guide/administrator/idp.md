@@ -24,11 +24,11 @@ If the IDP system does not support discovery service, you can omit the discovery
 
 The following picture demonstrate how to add GitLab as an IDPbelow show how to add.
 
-<img src="/image/idp_add.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px"}} /><br /><br />
+<img src="/image/idp_add.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px", borderRadius: "10px"}} /><br /><br />
 
 If you don't have a discovery endpoint for your OIDC provider, you can manually specify the authorization endpoint, userinfo endpoint, and issuer for your provider.
 
-<img src="/image/discovery_field.png" style={{boxShadow: "10px 5px 5px grey"}} />  
+<img src="/image/discovery_field.png" style={{boxShadow: "10px 5px 5px grey", radius: "10px", borderRadius: "10px"}} />  
 
 ## Deleting an IDP
 
