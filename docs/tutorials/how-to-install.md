@@ -141,7 +141,7 @@ nodes:
 EOF
 
 # kubernetes installation, you can specify any k8s version between v1.19.16 and v1.24.7
-kind create cluster --image=kindest/node:v1.19.16 --config=kind.yaml
+kind create cluster --image=kindest/node:v1.19.16 --name=horizon --config=kind.yaml
 
 # waiting for the new kubernetes cluster to be running healthily
 
@@ -155,12 +155,7 @@ helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --ver
 * Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
 
 ```bash
-docker ps
-
-# CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-#a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
-
-docker exec -it a9902c293760 bash
+docker exec -it horizon-control-plane bash
 
 echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" > /etc/resolv.conf
 ```
@@ -172,12 +167,7 @@ echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spe
 * `Harbor` installed by `Horizon` uses an auto-generated tls certificate which will cause `X509` problem when pulling image on host, so you need to add some contents to the config of `Containerd` and restart it.
 
 ```bash
-docker ps
-
-# CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-# a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   kind-control-plane
-
-docker exec -it a9902c293760 bash
+docker exec -it horizon-control-plane bash
 
 echo '[plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.horizoncd.svc.cluster.local".tls]
   insecure_skip_verify = true' >> /etc/containerd/config.toml
@@ -196,8 +186,9 @@ minikube start --container-runtime=docker --driver=docker --kubernetes-version=v
 
 # waiting for the new kubernetes cluster to be running healthily
 
-# enable ingress-nginx addons
-minikube addons enable ingress
+# install ingress-nginx by helm
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --version 4.1.4 --set controller.hostNetwork=true --set controller.watchIngressWithoutClass=true --create-namespace
 ```
 
 :::caution
@@ -205,19 +196,8 @@ minikube addons enable ingress
 * Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
 
 ```bash
-kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'
-
-# 10.96.0.10
-
-docker ps
-
-#CONTAINER ID   IMAGE                    COMMAND                  CREATED        STATUS        PORTS                                                                                                                                                                                                                                                                                                     NAMES
-#d5b8bad67208   kicbase/stable:v0.0.36   "/usr/local/bin/entr…"   21 hours ago   Up 21 hours   0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp, 0.0.0.0:49167->22/tcp, :::49167->22/tcp, 0.0.0.0:49166->2376/tcp, :::49166->2376/tcp, 0.0.0.0:49165->5000/tcp, :::49165->5000/tcp, 0.0.0.0:49164->8443/tcp, :::49164->8443/tcp, 0.0.0.0:49163->32443/tcp, :::49163->32443/tcp   minikube
-
-docker exec -it d5b8bad67208 bash
-
-# in container
-echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" > /etc/resolv.conf
+# in host machine
+kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}' | xargs -I {} docker exec minikube bash -c 'echo "nameserver {}" > /etc/resolv.conf'
 ```
 
 :::
@@ -229,11 +209,6 @@ echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spe
 
 Install `Horizon` by helm, you can find the latest version of `Horizon` in [Horizon Chart Repo](https://github.com/horizoncd/helm-charts/releases)
 
-```bash
-helm repo add horizon https://horizoncd.github.io/helm-charts
-helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace
-```
-
 :::info
 For users from China, you use values.:
 
@@ -241,6 +216,11 @@ For users from China, you use values.:
 helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace -f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml
 ```
 :::
+
+```bash
+helm repo add horizon https://horizoncd.github.io/helm-charts
+helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace
+```
 
 Keep watching the service status of `Horizon`. If everything goes well, you can see the following output:
 
