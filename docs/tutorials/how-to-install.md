@@ -155,11 +155,6 @@ helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --ver
 * Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
 
 ```bash
-docker ps
-
-# CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-#a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   horizon-control-plane
-
 docker exec -it horizon-control-plane bash
 
 echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'`" > /etc/resolv.conf
@@ -172,11 +167,6 @@ echo "nameserver `kubectl get service -n kube-system kube-dns -o jsonpath='{.spe
 * `Harbor` installed by `Horizon` uses an auto-generated tls certificate which will cause `X509` problem when pulling image on host, so you need to add some contents to the config of `Containerd` and restart it.
 
 ```bash
-docker ps
-
-# CONTAINER ID   IMAGE                   COMMAND                  CREATED      STATUS       PORTS                                                                 NAMES
-# a9902c293760   kindest/node:v1.19.16   "/usr/local/bin/entr…"   3 days ago   Up 6 hours   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 127.0.0.1:53586->6443/tcp   horizon-control-plane
-
 docker exec -it horizon-control-plane bash
 
 echo '[plugins."io.containerd.grpc.v1.cri".registry.configs."harbor.horizoncd.svc.cluster.local".tls]
@@ -196,8 +186,9 @@ minikube start --container-runtime=docker --driver=docker --kubernetes-version=v
 
 # waiting for the new kubernetes cluster to be running healthily
 
-# enable ingress-nginx addons
-minikube addons enable ingress
+# install ingress-nginx by helm
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --version 4.1.4 --set controller.hostNetwork=true --set controller.watchIngressWithoutClass=true --create-namespace
 ```
 
 :::caution
@@ -205,31 +196,10 @@ minikube addons enable ingress
 * Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
 
 ```bash
-kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}'
-
-# 10.96.0.10
-
-docker ps
-
-#CONTAINER ID   IMAGE                    COMMAND                  CREATED        STATUS        PORTS                                                                                                                                                                                                                                                                                                     NAMES
-#d5b8bad67208   kicbase/stable:v0.0.36   "/usr/local/bin/entr…"   21 hours ago   Up 21 hours   0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:443->443/tcp, :::443->443/tcp, 0.0.0.0:49167->22/tcp, :::49167->22/tcp, 0.0.0.0:49166->2376/tcp, :::49166->2376/tcp, 0.0.0.0:49165->5000/tcp, :::49165->5000/tcp, 0.0.0.0:49164->8443/tcp, :::49164->8443/tcp, 0.0.0.0:49163->32443/tcp, :::49163->32443/tcp   minikube
-
 docker exec -it minikube bash
 
-# in container
+# in host machine
 kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}' | xargs -I {} docker exec minikube bash -c 'echo "nameserver {}" > /etc/resolv.conf'
-```
-
-:::
-
-:::caution
-
-If you encounter `503 Service Temporarily Unavailable` error when visiting Horizon, please try to install ingress manually.
-
-```bash
-
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --version 4.1.4 --set controller.hostNetwork=true --set controller.watchIngressWithoutClass=true --create-namespace
 ```
 
 :::
