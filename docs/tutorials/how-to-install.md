@@ -196,8 +196,6 @@ helm install my-ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --ver
 * Node in K8s cannot resolve service domain successfully by default, so you need to set serviceIP of `coredns` as a `nameserver` in `/etc/resolv.conf`.
 
 ```bash
-docker exec -it minikube bash
-
 # in host machine
 kubectl get service -n kube-system kube-dns -o jsonpath='{.spec.clusterIP}' | xargs -I {} docker exec minikube bash -c 'echo "nameserver {}" > /etc/resolv.conf'
 ```
@@ -218,7 +216,6 @@ For users from China, you use values.:
 helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace -f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml
 ```
 :::
-
 
 ```bash
 helm repo add horizon https://horizoncd.github.io/helm-charts
