@@ -290,7 +290,13 @@ helm install horizon horizoncd/horizon -n horizoncd --set minimal=false,full=tru
 
 ```bash
 helm install horizon horizoncd/horizon -n horizoncd --version 2.1.7 --create-namespace \
---set gitlab.enabled=false,core.args.gitOpsRepoDefaultBranch=<defaultBranch>,config.gitopsRepoConfig.rootGroupPath=<rootGroupID>,config.gitopsRepoConfig.url=<gitlabURL>,config.gitopsRepoConfig.token=<token>,argo-cd.configs.credentialTemplates.gitops-creds.url=<gitlabURL>,argo-cd.configs.credentialTemplates.gitops-creds.password=<token>,argo-cd.configs.credentialTemplates.gitops-creds.username=root,argo-cd.configs.credentialTemplates.gitops-creds.name=gitops-creds
+--set gitlab.enabled=false \
+--set core.args.gitOpsRepoDefaultBranch=<defaultBranch> \
+--set config.gitopsRepoConfig.rootGroupPath=<rootGroupID> \
+--set config.gitopsRepoConfig.url=<gitlabURL> \
+--set config.gitopsRepoConfig.token=<gitlabToken> \
+--set argo-cd.configs.credentialTemplates.gitops-creds.url=<gitlabURL> \
+--set argo-cd.configs.credentialTemplates.gitops-creds.password=<gitlabToken>
 ```
 
 :::
