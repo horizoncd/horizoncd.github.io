@@ -2,7 +2,6 @@
 title: Local Installation
 toc_max_heading_level: 6
 ---
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -29,19 +28,20 @@ This installation, requiring minimum hardware resources, is designed for **testi
 | Resource | Minimum | Recommended |
 | -------- | ------- | ----------- |
 | CPU      | 1 CPU   | 2 CPU       |
-| Mem      | 3 GB    | 4 GB       |
+| Mem      | 3 GB    | 4 GB        |
 | Disk     | 40 GB   | 80 GB       |
 
 ##### Components
 
-| Component   | Version                                                               |
-| ----------- | --------------------------------------------------------------------- |
-| Argo-cd     | `v2.4.11`                                                             |
-| Tekton      | dashboard:`v0.13.0`<br/>pipeline: `v0.28.0`<br />triggers: `v0.17.0` |
-| Chartmuseum | `v0.15.0`                                                             |
-| Redis       | `6.0.7-alpine`                                                        |
-| Mysql       | `8.0.31-debian-11-r0`                                                 |
-| Docker-registry | `2.8.1` |
+| Component              | Version                                                                       |
+| ---------------------- | ----------------------------------------------------------------------------- |
+| Gitlab (May not exist) | `13.11.7-ce.0`                                                              |
+| Argo-cd                | `v2.4.11`                                                                   |
+| Tekton                 | dashboard:`v0.13.0`<br />pipeline: `v0.28.0`<br />triggers: `v0.17.0` |
+| Chartmuseum            | `v0.15.0`                                                                   |
+| Redis                  | `6.0.7-alpine`                                                              |
+| Mysql                  | `8.0.31-debian-11-r0`                                                       |
+| Docker-registry        | `2.8.1`                                                                     |
 
 #### Full installation
 
@@ -52,21 +52,22 @@ Install all components of Horizon system.
 | Resource | Minimum | Recommended |
 | -------- | ------- | ----------- |
 | CPU      | 2 CPU   | 4 CPU       |
-| Mem      | 4 GB    | 8 GB       |
+| Mem      | 6 GB    | 8 GB        |
 | Disk     | 40 GB   | 80 GB       |
 
 ##### Components
 
-| Component   | Version                                                               |
-| ----------- | --------------------------------------------------------------------- |
-| Gitlab      | `13.11.7-ce.0`                                                        |
-| Argo-cd     | `v2.4.11`                                                             |
-| Tekton      | dashboard:` v0.13.0`<br/>pipeline: `v0.28.0`<br />triggers: `v0.17.0` |
-| Chartmuseum | `v0.15.0`                                                             |
-| Grafana     | `8.4.6`                                                               |
-| Minio       | `2022.10.29-debian-11-r0`                                             |
-| Redis       | `6.0.7-alpine`                                                        |
-| Mysql       | `8.0.31-debian-11-r0`                                                 |
+| Component              | Version                                                                |
+| ---------------------- | ---------------------------------------------------------------------- |
+| Gitlab (May not exist) | `13.11.7-ce.0`                                                         |
+| Argo-cd                | `v2.4.11`                                                              |
+| Tekton                 | dashboard:` v0.13.0`<br />pipeline: `v0.28.0`<br />triggers: `v0.17.0` |
+| Chartmuseum            | `v0.15.0`                                                              |
+| Grafana                | `8.4.6`                                                                |
+| Minio                  | `2022.10.29-debian-11-r0`                                              |
+| Redis                  | `6.0.7-alpine`                                                         |
+| Mysql                  | `8.0.31-debian-11-r0`                                                  |
+| Harbor                 | `2.2.3`                                                                |
 
 ### Softwares
 
@@ -104,7 +105,7 @@ curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/insta
 
 ### Gitlab
 
-Horizon stores all applications' configuration and operation in gitlab. With minimal installation, the [public gitlab](https://gitlab.com/horizoncd1) will be used as the gitops repo, so minimal installation is **only for testing and developing**, cause your gitops repo could be deleted by others. In full installation, a local gitlab instance will be brought up for you.
+Horizon stores all applications' configuration and operation in gitlab. With minimal installation, the [public gitlab](https://gitlab.com/horizoncd1) will be used as the gitops repo, so minimal installation is **only for testing and developing**, cause your gitops repo could be deleted by others.
 
 The install script also supports to bring up a local gitlab instance for you. You can run the following command to install Horizon with a local gitlab instance.
 
