@@ -29,9 +29,21 @@ const sidebars = {
       collapsed: false,
       items: [
         {
-          type: 'doc',
-          id: 'tutorials/how-to-install',
+          type: 'category',
           label: 'How to Install',
+          collapsed: false,
+          items: [
+            {
+              type: 'doc',
+              id: 'tutorials/how-to-install/local-installation',
+              label: 'Local Installation',
+            },
+            // {
+            //   type: 'doc',
+            //   id: 'tutorials/how-to-install/cloud-provider-installation',
+            //   label: 'Cloud Provider Installation',
+            // }
+          ]
         },
         {
           type: 'doc',
