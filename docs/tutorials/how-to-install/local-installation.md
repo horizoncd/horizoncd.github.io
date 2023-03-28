@@ -271,7 +271,7 @@ docker exec horizon-control-plane bash -c \
 
 Install `Horizon` by helm, you can find the latest version of `Horizon` in [Horizon Chart Repo](https://github.com/horizoncd/helm-charts/releases).
 
-The default installation is not the same as the minimal installation by script, it will install install `gitlab` by default.
+The default installation is not the same as the minimal installation by script, it will install `gitlab` by default.
 
 :::info
 
@@ -307,45 +307,41 @@ helm repo add horizoncd https://horizoncd.github.io/helm-charts
 helm install horizon horizoncd/horizon -n horizoncd --version 2.1.7 --create-namespace
 ```
 
-Keep watching the service status of `Horizon`. If everything goes well, you can see the following output:
+Keep watching the service status of `Horizon`. If everything goes well, you will see all the pods are running or completed.
+
+Below shows the output of minimal installation.
 
 ```bash
 kubectl get pod -nhorizoncd -w
 
 # NAME                                                 READY   STATUS      RESTARTS   AGE
-# el-horizon-listener-f5dcd8958-tx675                  1/1     Running     0          26m
-# horizon-argocd-application-controller-0              1/1     Running     0          39m
-# horizon-argocd-repo-server-5c89969bbb-l8hcr          1/1     Running     0          40m
-# horizon-argocd-server-579fdbf68c-9p8wr               1/1     Running     0          40m
-# horizon-chartmuseum-5db87d9dc8-8j6b9                 1/1     Running     4          40m
-# horizon-core-64df467d7-jtdl6                         1/1     Running     0          24m
-# horizon-gitlab-75d5c47c96-zzjpl                      1/1     Running     0          17h
-# horizon-grafana-78c956d9b6-6th7p                     3/3     Running     0          17h
-# horizon-harbor-core-86944d7f76-q2lcb                 1/1     Running     2          26m
-# horizon-harbor-database-0                            1/1     Running     0          39m
-# horizon-harbor-jobservice-569559cfd8-c2plt           1/1     Running     2          26m
-# horizon-harbor-nginx-7f7cc9b669-64nxz                1/1     Running     0          26m
-# horizon-harbor-portal-555876fd5-q9mc5                1/1     Running     0          40m
-# horizon-harbor-registry-77977b5d58-64m6l             2/2     Running     0          26m
-# horizon-job-bfbc7cb4d-td64p                          1/1     Running     0          37m
-# horizon-minio-74c84b8c4f-qsdj2                       1/1     Running     0          39m
-# horizon-minio-provisioning-9tgz8                     0/1     Completed   0          26m
-# horizon-mysql-0                                      1/1     Running     0          39m
-# horizon-redis-ha-server-0                            2/2     Running     0          25m
-# horizon-swagger-676fbc8ff9-w8tq7                     1/1     Running     0          40m
-# horizon-web-5784d89d46-g7bx7                         1/1     Running     0          40m
-# tekton-dashboard-598fb5b5b7-xmfsz                    1/1     Running     0          40m
-# tekton-pipelines-controller-688d99f585-kvb58         1/1     Running     0          40m
-# tekton-pipelines-webhook-86bd954957-6n7m2            1/1     Running     1          40m
-# tekton-triggers-controller-f45c96768-pg8sv           1/1     Running     0          40m
-# tekton-triggers-core-interceptors-857dcb75b6-lbprb   1/1     Running     0          40m
-# tekton-triggers-webhook-559b5b98cc-c7tmj             1/1     Running     0          40m
+# el-horizon-listener-5cb9f68784-d9srw                 1/1     Running     0          14h
+# horizon-argocd-application-controller-0              1/1     Running     0          14h
+# horizon-argocd-repo-server-695b6b99d8-jdvln          1/1     Running     0          14h
+# horizon-argocd-server-784fd775f9-52f2l               1/1     Running     0          14h
+# horizon-chartmuseum-6995b76cf8-2dfgd                 1/1     Running     5          14h
+# horizon-core-8475d8db77-shnf7                        1/1     Running     7          14h
+# horizon-gitlab-0                                     1/1     Running     0          14h
+# horizon-minio-d8948c84-sdbxg                         1/1     Running     0          14h
+# horizon-minio-provisioning-nrzbx                     0/1     Completed   0          14h
+# horizon-mysql-0                                      1/1     Running     0          14h
+# horizon-redis-ha-server-0                            2/2     Running     0          14h
+# horizon-registry-69f6bd5957-p7bxw                    1/1     Running     0          14h
+# horizon-web-5f6dd9fdfd-ctrvj                         1/1     Running     0          14h
+# tekton-dashboard-556f559c99-4v9rk                    1/1     Running     0          14h
+# tekton-pipelines-controller-5f9d6fbb65-c2kj6         1/1     Running     0          14h
+# tekton-pipelines-webhook-5555c4b6cd-5ljtm            1/1     Running     0          14h
+# tekton-triggers-controller-597fddd6f6-vw5t7          1/1     Running     0          14h
+# tekton-triggers-core-interceptors-59767f99d6-rhp2l   1/1     Running     0          14h
+# tekton-triggers-webhook-5bdfd74799-tkxcn             1/1     Running     0          14h
 ```
 
-### Check the installation result
+## Check the installation result
 
 If everything goes well, you can enter Horizon by visiting the url: http://horizon.h8r.site, and you will see the page like below:
 
 <img src="/image/home.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px", borderRadius: "10px"}} />
 
-Next, please go to [how to deploy your fist workload](/docs/tutorials/how-to-deploy-your-first-workload) to experience this amazing system more closely.
+If you install by script, please see [Create an application](/docs/tutorials/how-to-deploy-your-first-workload#7-create-an-application) to explore more.
+
+Or you can follow [How to Deploy Your First Workload](/docs/tutorials/how-to-deploy-your-first-workload) to experience this amazing system more closely.
