@@ -94,13 +94,13 @@ After installing docker, you can run the following command to install Horizon, b
 :::
 
 ```bash
-curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -k
+curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -s -- -k
 ```
 
 Command above will install Horizon based on kind, and if you want to install Horizon based on minikube, you can run the following command.
 
 ```bash
-curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -m
+curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -s -- -m
 ```
 
 ### Gitlab
