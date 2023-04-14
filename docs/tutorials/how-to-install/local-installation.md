@@ -93,6 +93,12 @@ After installing docker, you can run the following command to install Horizon, b
 
 :::
 
+:::caution
+
+In order to avoid the [rate limit of the access to github api](https://docs.github.com/en/rest/rate-limit?apiVersion=2022-11-28), you can use flag `--github-token` to specify your own access token. See: [github personal access tokens](https://github.com/settings/tokens?type=beta).
+
+:::
+
 ```bash
 curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -s -- -k
 ```
