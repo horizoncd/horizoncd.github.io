@@ -121,6 +121,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              id: 'user-guide/common-user/trigger',
+              label: 'Trigger',
+            },
+            {
+              type: 'doc',
               id: 'user-guide/common-user/monitor',
               label: 'Monitor',
             },
