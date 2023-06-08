@@ -7,7 +7,7 @@ Horizon provides a trigger mechanism to trigger a pipeline when a specified even
 
 ## Github Action
 
-We provide an [action](https://github.com/horizoncd/actions), you could just use it in your workflow file.
+We provide an [action](https://github.com/horizoncd/actions), and you could just use it in your workflow file.
 
 Below is an example of a workflow file:
 
@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - uses: kilosonc/horizon-actions@v1
+    - uses: horizoncd/actions@v1
       with:
         token: {{ secrets.HORIZON_TOKEN }}
         addr: {{ secrets.HORIZON_ADDR }}
@@ -40,7 +40,7 @@ This action will trigger a pipeline to deploy your commit when a push event occu
 
 ## Gitlab CI/CD
 
-We provide a cli tool [horizoncd](https://www.npmjs.com/package/horizoncd?activeTab=readme), you could just use it in your gitlab-ci.yml file, but it requires nodejs environment.
+We provide a cli tool [horizoncd](https://www.npmjs.com/package/horizoncd?activeTab=readme), and you could just use it in your gitlab-ci.yml file, but it requires nodejs environment.
 
 Below is an example of a gitlab-ci.yml file:
 
