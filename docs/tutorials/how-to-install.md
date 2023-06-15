@@ -259,7 +259,7 @@ kubectl get pod -nhorizoncd -w
 
 ### Check the installation result
 
-If everything goes well, you can enter Horizon by visiting the url: http://horizon.h8r.site, and you will see the page like below:
+If everything goes well, you can enter Horizon by visiting the url: http://horizon.localtest.me, and you will see the page like below:
 
 <img src="/image/home.png" style={{boxShadow: "10px 5px 5px grey", radius:"10px", borderRadius: "10px"}} />
 
