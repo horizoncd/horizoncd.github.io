@@ -14,17 +14,18 @@ You can connect horizon to more external systems through webhook and your custom
 
 The following events are supported.
 
-| Event type              | Trigger                                                           |
-| ----------------------- | ----------------------------------------------------------------- |
-| applications_created    | A new application is created.                                     |
-| application_deleted     | An application is deleted.                                        |
-| application_transferred | An application is transferred to another group.                   |
-| cluster_created         | A new cluster is created.                                         |
-| cluster_deleted         | A cluster is deleted.                                             |
-| clusters_builddeployed  | A cluster has completed a build task and triggered a deploy task. |
-| clusters_deployed       | A cluster has triggered a deploy task.                            |
-| clusters_rollbacked     | A cluster has triggered a rollback task.                          |
-| clusters_freed          | A cluster has been freed.                                         |
+| Event type                 | Trigger                                                           |
+| -----------------------    | ----------------------------------------------------------------- |
+| applications_created       | A new application is created.                                     |
+| application_deleted        | An application is deleted.                                        |
+| application_transferred    | An application is transferred to another group.                   |
+| cluster_created            | A new cluster is created.                                         |
+| cluster_deleted            | A cluster is deleted.                                             |
+| clusters_builddeployed     | A cluster has completed a build task and triggered a deploy task. |
+| clusters_deployed          | A cluster has triggered a deploy task.                            |
+| clusters_rollbacked        | A cluster has triggered a rollback task.                          |
+| clusters_freed             | A cluster has been freed.                                         |
+| clusters_kubernetes_events | An event related to cluster from kubernetes has been captured     |
 
 Note: "*" indicates that you want to follow any event.
 
@@ -68,5 +69,24 @@ X-Horizon-Webhook-Secret: "secret"
         "name": "test",
         "email": "test@noreply.com"
     }
+}
+```
+
+For `clusters_kubernetes_event`, the simplified kube event occupied the `extra` field.
+
+```
+Content-Type: application/json;charset=utf-8
+X-Horizon-Webhook-Secret: "secret"
+{
+    "eventID": 78402,
+    "webhookID": 33,
+    "cluster": {
+        "id": 61400,
+        "name": "for-argocd-error",
+        "applicationName": "for-argocd",
+        "env": "online"
+    },
+    "eventType": "clusters_kubernetes_event",
+    "extra": "{\"involvedObject\":{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Rollout\",\"name\":\"for-argocd-error\",\"namespace\":\"online-64\"},\"lastTimestamp\":\"2023-06-15T09:03:44Z\",\"message\":\"Completed all steps\",\"name\":\"for-argocd-error.1768c4d94710ae4f\",\"reason\":\"SettingStableRS\",\"type\":\"Normal\"}"
 }
 ```
