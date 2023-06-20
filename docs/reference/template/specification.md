@@ -79,7 +79,7 @@ A markdown file that provides documentation and usage instructions for the chart
 * **templates**  
 A directory contains Go template files that define the Kubernetes resources that will be deployed when the chart is installed. These templates use the values from the `values.yaml` file and the user input from the form to render the final Kubernetes manifest files.
   * **resource.yaml**  
-  The main resource manifest file to applyed to Kubernetes, we recommend you to use a unique name for the `name` field, such as `{{ .Values.horizon.cluster }}`, for more built-in parameters, please refer to [GitOps Repository Structure](#gitops-repository-structure).
+  The main resource manifest file to applyed to Kubernetes, we recommend you to use a unique name for the `name` field, such as `{{ .Values.horizon.instance }}`, for more built-in parameters, please refer to [GitOps Repository Structure](#gitops-repository-structure).
 
   In addition to the built-in parameters, you can also customize the parameters through the json schema. We recommend putting your parameters in `.Values.app`.
 
@@ -88,7 +88,7 @@ A directory contains Go template files that define the Kubernetes resources that
   apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: {{ .Values.horizon.cluster }}
+    name: {{ .Values.horizon.instance }}
   spec:
     replicas: {{ .Values.app.spec.replicas }}
     selector:
@@ -98,7 +98,7 @@ A directory contains Go template files that define the Kubernetes resources that
         {{- include "podLabels" . | nindent 8 }}
       spec:
         containers:
-        - name: {{ .Values.horizon.cluster }}
+        - name: {{ .Values.horizon.instance }}
           image: {{ .Values.image }}
   ```
   * **_helpers.tpl**  
@@ -108,7 +108,7 @@ A directory contains Go template files that define the Kubernetes resources that
     ```
     {{- define "podLabels" -}}
     horizoncd.github.io/application: {{ .Values.horizon.application }}
-    horizoncd.github.io/cluster: {{ .Values.horizon.cluster }}
+    horizoncd.github.io/instance: {{ .Values.horizon.instance }}
     horizoncd.github.io/environment: {{ .Values.env.environment }}
     {{- end }}
     ```
@@ -126,10 +126,10 @@ The json schema directory format is as follows:
 ```
 
 * **application.schema.json**  
-application.schema.json is used to generate a user-friendly form for users to create application or cluster and validate their inputs, it follows the [JSON Schema specification](https://json-schema.org/), you need to write this file based on the Helm Chart's values.yaml.
+application.schema.json is used to generate a user-friendly form for users to create application or instance and validate their inputs, it follows the [JSON Schema specification](https://json-schema.org/), you need to write this file based on the Helm Chart's values.yaml.
   You can also use Go template syntax in the `application.schema.json` file to quote admin tags to conditionally show some special options.
 
-  For example, if we set an admin tag `maxReplicas=60`, the replicas of cluster can exceed the default limit of 30. 
+  For example, if we set an admin tag `maxReplicas=60`, the replicas of instance can exceed the default limit of 30. 
   ```
   {
     "type": "object",
@@ -193,19 +193,19 @@ The `output` directory includes the following file:
 * **outputs.yaml**  
   It's an optional file that allows the template author to define a set of outputs that can be queried after the template is deployed.
 
-  The following example is to output the generated domain of cluster:
+  The following example is to output the generated domain of instance:
   
   ```
   domain:
-    description: the domain for the cluster
-    value: {{ .Values.horizon.cluster }}.cloudnative.com
+    description: the domain for the instance
+    value: {{ .Values.horizon.instance }}.cloudnative.com
   ```
 
 Overall, the Horizon template format allows developers to easily package and distribute Kubernetes-based applications using Helm Charts, while providing a user-friendly form-based input experience using React JsonSchema Form and json schema.
 
 ## GitOps Repository Structure
 
-Based on this template, users can create applications and clusters through a form on the website. We use GitOps approach to managing the resources that are deployed using the Horizon Template, the directory structure of the gitops repo is as follows:
+Based on this template, users can create applications and instances through a form on the website. We use GitOps approach to managing the resources that are deployed using the Horizon Template, the directory structure of the gitops repo is as follows:
 
 ```
 .
@@ -236,7 +236,7 @@ The gitops repository is also a Helm chart. It relates to the horizon template t
   dependencies:
   - name: deployment
     version: v0.0.1-ec06d596
-    repository: https://horizon-harbor-core.horizon.svc.cluster.local/chartrepo/horizon-template
+    repository: https://horizon-harbor-core.horizon.svc.instance.local/chartrepo/horizon-template
   ```
 * **application.yaml**  
 A list of parameters filled in by the user through the form generated by the schema.
@@ -285,7 +285,7 @@ The version of the template, which is currently 0.0.2.
 
     | Parameter                  | Meaning                                                            |
     | -------------------------- | ------------------------------------------------------------------ |
-    | .Values.buildType          | Build type of this cluster.  "dockerfile" is supported by default. |
+    | .Values.buildType          | Build type of this instance.  "dockerfile" is supported by default. |
     | .Values.dockerfile.path    | Path of dockerfile.                                                |
     | .Values.dockerfile.content | Content of dockefile                                               |
     ```
@@ -336,7 +336,7 @@ The version of the template, which is currently 0.0.2.
         environment: local
         region: local
         namespace: local-1
-        baseRegistry: horizon-harbor-core.horizon.svc.cluster.local
+        baseRegistry: horizon-harbor-core.horizon.svc.instance.local
         ingressDomain: cloudnative.com
     ```
   * **horizon.yaml** 
@@ -344,11 +344,11 @@ The version of the template, which is currently 0.0.2.
     | Parameter                        | Meaning                                                              |
     | -------------------------------- | -------------------------------------------------------------------- |
     | .Values.horizon.application      | Application name                                                     |
-    | .Values.horizon.clusterID        | Cluster id                                                           |
-    | .Values.horizon.cluster          | Cluster name                                                         |
+    | .Values.horizon.instanceID        | instance id                                                           |
+    | .Values.horizon.instance          | instance name                                                         |
     | .Values.horizon.template.name    | Template name                                                        |
     | .Values.horizon.template.release | Domain of ingress                                                    |
-    | .Values.horizon.priority         | Priority of this cluster. you can use it for oversale or preemption. |
+    | .Values.horizon.priority         | Priority of this instance. you can use it for oversale or preemption. |
 
     For example:
 
@@ -356,8 +356,8 @@ The version of the template, which is currently 0.0.2.
     deployment:
       horizon:
         application: demo
-        clusterID: 1
-        cluster: demo-1
+        instanceID: 1
+        instance: demo-1
         template:
           name: deployment
           release: v0.0.1-ec06d596
@@ -367,7 +367,7 @@ The version of the template, which is currently 0.0.2.
 
     | Parameter           | Meaning                                                                                |
     | ------------------- | -------------------------------------------------------------------------------------- |
-    | .Values.restartTime | Restart time of cluster.You can use it in the resource annotations for rolling update. |
+    | .Values.restartTime | Restart time of instance.You can use it in the resource annotations for rolling update. |
 
     For example:
 

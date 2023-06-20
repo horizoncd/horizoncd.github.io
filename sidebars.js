@@ -111,8 +111,8 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'user-guide/common-user/cluster',
-              label: 'Cluster',
+              id: 'user-guide/common-user/application-instance',
+              label: 'Application Instance',
             },
             {
               type: 'doc',

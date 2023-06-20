@@ -77,7 +77,7 @@ In production environment, you should use a net-based storage class for `MySQL` 
 
 Installation will bring up a registry service, which is used to store the images of the applications. The registry service is based on [Harbor](https://goharbor.io/).
 
-Horizon will push the image of the application to the registry service. When deploying a new cluster, Kubernetes will pull the image of the application from the registry service. So Kubernetes' CRI should be able to resolve the registry service's domain name. There's two ways to do this.
+Horizon will push the image of the application to the registry service. When deploying a new application instance, Kubernetes will pull the image of the application from the registry service. So Kubernetes' CRI should be able to resolve the registry service's domain name. There's two ways to do this.
 
 ###### Edit Resolv.conf
 

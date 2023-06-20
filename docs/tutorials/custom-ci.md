@@ -18,7 +18,7 @@ Horizon CI works based on [tekton pipeline](https://github.com/tektoncd/pipeline
 
 ### Build config
 
-Build config holds user's build configurations of application or cluster, which is characterized as json object `pipelineJSONBlob` in pipeline.
+Build config holds user's build configurations of application or application instance, which is characterized as json object `pipelineJSONBlob` in pipeline.
 ![](/image/new-app-demo2.png)
 You can customize your own build based on [json schema](https://json-schema.org) that contains two parts: json schema and ui schema. Override them in [values.yaml](https://github.com/horizoncd/helm-charts/blob/main/charts/horizon/values.yaml) of [horizon chart](https://github.com/horizoncd/helm-charts/tree/main/charts/horizon), which has the following structure:
 
@@ -99,8 +99,8 @@ The steps can retrieve the following build parameters from horizon core:
 | :--------------- | :------------------------------------- | :-------------------------------------------------------------- |
 | token            | JWT token used to callback horizon api | usage: add "X-Horizon-JWT-Token: $TOKEN" header to HTTP request |
 | application      | application name                       |                                                                 |
-| cluster          | cluster name                           |                                                                 |
-| clusterID        | cluster ID                             |                                                                 |
+| instance          | application instance name                           |                                                                 |
+| instanceID        | application instance ID                             |                                                                 |
 | environment      | environment name                       |                                                                 |
 | gitRepositoryUrl | git repository url of source code      |                                                                 |
 | gitSubfolder     | sub folder from context                |                                                                 |

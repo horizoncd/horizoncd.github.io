@@ -11,9 +11,9 @@ Horizon is a standardized cloud native delivery platform, so it is natural for u
 
 We have built several monitoring dashboards with best practice based on [Grafana](https://grafana.com/) for users to quickly experience and use. Next, let's see how to use it.
 
-Enter the monitoring dashboard for a particular cluster.
+Enter the monitoring dashboard for a particular application instance.
 
-* Select a cluster from the cluster list page.
+* Select a application instance from the application instance list page.
 * Click **Monitoring** from its menus.
 
 The following dashboards will be shown：

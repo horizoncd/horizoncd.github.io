@@ -4,7 +4,7 @@ title: Template
 
 ## What is Template
 
-A template is a Helm chart that is used by Horizon to create applications in a Kubernetes cluster. When creating a cluster, Horizon retrieves the template from the repository, renders it, and pushes it to the GitOps repository. The resources are then created in the cluster through the Manifest in the GitOps repository.
+A template is a Helm chart that is used by Horizon to create applications in a Kubernetes application instance. When creating a application instance, Horizon retrieves the template from the repository, renders it, and pushes it to the GitOps repository. The resources are then created in the application instance through the Manifest in the GitOps repository.
 
 ## Create a Template
 
@@ -23,7 +23,7 @@ Templates are generally created by administrators. If a regular user has specifi
 
 Private templates can be managed in terms of permissions. 
 
-If the option to make them visible only to the owner is selected, only the owner can use the template to create applications and clusters.
+If the option to make them visible only to the owner is selected, only the owner can use the template to create applications and application instances.
 
 When determining the user role for a template, Horizon will search for the first role it finds by going up one layer at a time from the current template, and this will be the user's role for that template. Refer to the [Template Specification](/docs/reference/template/specification) for more information on how to create templates.
 

@@ -118,19 +118,19 @@ Now create and administer a new group:
 
 6. Click **Submit** to create it.
 
-## 8. Create a cluster
+## 8. Create a application instance
 
-1. From the application page, click **New cluster** button to start to create a new cluster.
-2. Select environment and region where you want to deploy the cluster.
+1. From the application page, click **New application instance** button to start to create a new application instance.
+2. Select environment and region where you want to deploy the application instance.
 3. Click **Next** and **Submit** to create it.
 
-## 9. Deploy your cluster
+## 9. Deploy your application instance
 
 Now, it is the last step to deploy your first workload!
 
-1. From the cluster page, click **Build and deploy** button
+1. From the application instance page, click **Build and deploy** button
 2. Select your git reference and check the differences from the last revision.
 3. Click **Submit** button to confirm the build and deploy.
-4. Check the pipeline's log and cluster status.
-5. When the cluster status is **healthy**, your first `deployment` workload is successfully deployed on kubernetes!
-   ![cluster-builddeploy](/image/cluster-builddeploy.png)
+4. Check the pipeline's log and application instance status.
+5. When the application instance status is **healthy**, your first `deployment` workload is successfully deployed on kubernetes!
+   ![instance-builddeploy](/image/instance-builddeploy.png)

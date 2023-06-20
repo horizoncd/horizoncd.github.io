@@ -3,10 +3,10 @@ title: Webhook
 toc_max_heading_level: 6
 ---
 
-Webhooks are custom HTTP callbacks that you define. They are usually triggered by an event, such as creating a new cluster or triggering a new deploy task. For example, you can use webhooks to:
+Webhooks are custom HTTP callbacks that you define. They are usually triggered by an event, such as creating a new application instance or triggering a new deploy task. For example, you can use webhooks to:
 
 - Trigger other systems, such as starting a test when the deploy task started.
-- Send notifications, such as notifying specific people when a cluster is deleted.
+- Send notifications, such as notifying specific people when a application instance is deleted.
 
 You can connect horizon to more external systems through webhook and your custom webhook receivers.
 
@@ -19,13 +19,13 @@ The following events are supported.
 | applications_created       | A new application is created.                                     |
 | application_deleted        | An application is deleted.                                        |
 | application_transferred    | An application is transferred to another group.                   |
-| cluster_created            | A new cluster is created.                                         |
-| cluster_deleted            | A cluster is deleted.                                             |
-| clusters_builddeployed     | A cluster has completed a build task and triggered a deploy task. |
-| clusters_deployed          | A cluster has triggered a deploy task.                            |
-| clusters_rollbacked        | A cluster has triggered a rollback task.                          |
-| clusters_freed             | A cluster has been freed.                                         |
-| clusters_kubernetes_events | An event related to cluster from kubernetes has been captured     |
+| instances_created            | A new instance is created.                                         |
+| instances_deleted            | A instance is deleted.                                             |
+| instances_builddeployed     | A instance has completed a build task and triggered a deploy task. |
+| instances_deployed          | A instance has triggered a deploy task.                            |
+| instances_rollbacked        | A instance has triggered a rollback task.                          |
+| instances_freed             | A instance has been freed.                                         |
+| instances_kubernetes_events | An event related to instance from kubernetes has been captured     |
 
 Note: "*" indicates that you want to follow any event.
 
@@ -72,7 +72,7 @@ X-Horizon-Webhook-Secret: "secret"
 }
 ```
 
-For `clusters_kubernetes_event`, the simplified kube event occupied the `extra` field.
+For `instances_kubernetes_event`, the simplified kube event occupied the `extra` field.
 
 ```
 Content-Type: application/json;charset=utf-8
@@ -80,13 +80,13 @@ X-Horizon-Webhook-Secret: "secret"
 {
     "eventID": 78402,
     "webhookID": 33,
-    "cluster": {
+    "instance": {
         "id": 61400,
         "name": "for-argocd-error",
         "applicationName": "for-argocd",
         "env": "online"
     },
-    "eventType": "clusters_kubernetes_event",
+    "eventType": "instances_kubernetes_event",
     "extra": "{\"involvedObject\":{\"apiVersion\":\"argoproj.io/v1alpha1\",\"kind\":\"Rollout\",\"name\":\"for-argocd-error\",\"namespace\":\"online-64\"},\"lastTimestamp\":\"2023-06-15T09:03:44Z\",\"message\":\"Completed all steps\",\"name\":\"for-argocd-error.1768c4d94710ae4f\",\"reason\":\"SettingStableRS\",\"type\":\"Normal\"}"
 }
 ```

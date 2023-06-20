@@ -34,9 +34,9 @@ The following roles are provided by horizon by default, in descending order:
 | Create/edit/transfer applications       |       |           | ✓    |   |
 | Set default region                      |       | ✓         | ✓    | ✓ |
 | Delete applications                     |       |           | ✓    |   |
-| Create/copy/edit/free clusters          |       | ✓         | ✓    | ✓ |
-| Delete clusters                         |       |           | ✓    |   |
-| Build/deploy/restart/rollback clusters  |       | ✓         | ✓    | ✓ |
+| Create/copy/edit/free application instances          |       | ✓         | ✓    | ✓ |
+| Delete application instances                         |       |           | ✓    |   |
+| Build/deploy/restart/rollback application instances  |       | ✓         | ✓    | ✓ |
 | Online/offline/delete pods              |       | ✓         | ✓    | ✓ |
 | See a list of pipelineruns              |       | ✓         | ✓    | ✓ |
 | Create/edit/delete tags                 |       | ✓         | ✓    | ✓ |

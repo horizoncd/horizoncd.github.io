@@ -4,8 +4,8 @@ toc_max_heading_level: 6
 ---
 
 ## Applications
-An application is defined as a set of clusters and provide default configurations for the clusters created under it. The following features about applications are provide: 
-* defining application member roles to provide application and cluster RBAC
+An application is defined as a set of application instances and provide default configurations for the application instances created under it. The following features about applications are provide: 
+* defining application member roles to provide application and application instance RBAC
 * providing statistics of pipelines
 * providing webhook to notify external systems
 * managing access tokens for the resources that need access to the Horizon CD API
@@ -46,12 +46,12 @@ You can transfer the applications to another group, where your role should be no
 
 
 ## Set default region
-You can configure the default region for different environments. When you create a cluster for a environment, the default region for the environment is automatically populated.
+You can configure the default region for different environments. When you create a application instance for a environment, the default region for the environment is automatically populated.
 1. click on **Settings -> Advance** in the sidebar from the application page;
 2. select region for environment in the dropdown and click **Submit**.
 
 
 ## Delete applications
-When there is no cluster in the application, you can delete it. 
+When there is no application instance in the application, you can delete it. 
 1. click on **Details** in the sidebar from the application page;
 2. click **More -> Delete** above to delete your application.
