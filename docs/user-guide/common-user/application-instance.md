@@ -1,15 +1,17 @@
 ---
-title: Cluster
+title: Instances
 toc_max_heading_level: 6
 ---
 
-## Clusters
+## Instances
+
 A application instance is a deployment instance of the application in the Horizon context. You can deploy your application instance to various environments (e.g. online, test etc...) and regions. The application instance inherits the configuration of the application, and of course, you can modify most of the configuration and grant different permissions of the application instance to different members. The following features are provide: 
+
 * viewing pipeline histories and details
 * providing rich monitoring abilities
 
-
 ## Create application instances
+
 From the application page, you can click **New application instance** button to create a new application instance. The following table illustrates the additional parameters of application instances over applications: 
 
 |  Parameter  |                                    Description                                   | Note |
