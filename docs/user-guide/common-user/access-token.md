@@ -41,8 +41,8 @@ The following scopes are provided by horizon by default:
 | groups:read-write       | Read-write permissions for groups and subresources.       |
 | applications:read-only  | Read-only permissions for applications and subresources.  |
 | applications:read-write | Read-write permissions for applications and subresources. |
-| clusters:read-only      | Read-only permissions for clusters and subresources.      |
-| clusters:read-write     | Read-write permissions for clusters and subresources.     |
+| instances:read-only      | Read-only permissions for instances and subresources.      |
+| instances:read-write     | Read-write permissions for instances and subresources.     |
 
 ## Expireation and revoke
 

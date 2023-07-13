@@ -53,7 +53,7 @@ export default function Hello() {
           PlatForm Team can easily set up  through the horizon web ui.</p>
 
         <h3 id="architecture">Architecture</h3>
-        <p><img src="/image/horizon-opensource-arch.jpg" alt="arch"/></p>
+        <p><img src="/image/horizon-opensource-arch.jpg" alt="arch" /></p>
 
         <h4 id="horizon-core">Horizon-Core</h4>
         <p>The Horizon Core Server is the Rest Server which export the OpenAPIs consume by the Web UI, CLI, and other systems. it also provides features like:</p>
@@ -61,7 +61,7 @@ export default function Hello() {
           <li>Kubernetes and environment Management</li>
           <li>Template Management</li>
           <li>PrivateToken,AccessToken Management</li>
-          <li>Group,application,cluster management</li>
+          <li>Group,application,application instance management</li>
           <li>CI,CD Pipeline Management</li>
           <li>WekHook Management</li>
           <li>User and Member Management</li>

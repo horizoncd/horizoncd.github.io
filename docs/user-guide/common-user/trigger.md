@@ -31,7 +31,7 @@ jobs:
         addr: {{ secrets.HORIZON_ADDR }}
         deployMethod: buildDeploy
         title: 'deployment from github'
-        clusterID: 61851
+        instanceID: 61851
         gitRefType: commit
         ref: ${{ github.sha }}
 ```
@@ -69,11 +69,11 @@ build:
 
 | Name | Description | Required |
 | --- | --- | --- |
-| token | Horizon token with cluster-write permissions for horizon | true |
+| token | Horizon token with instance-write permissions for horizon | true |
 | addr | Address of Horizon instance | true |
 | title | Pipeline title | true |
 | description | Pipeline description | false |
-| clusterID | Cluster ID | true |
+| instanceID | Application instance ID | true |
 | deployMethod | buildDeploy or imageDeploy, method to deploy the app | true |
 | gitRefType | branch, tag or commit only, required if deployMethod is "buildDeploy" | false |
 | ref | Git ref, tag, branch or commit id | false |

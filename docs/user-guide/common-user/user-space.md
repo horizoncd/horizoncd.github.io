@@ -7,7 +7,7 @@ User Space is a place where you can manage all of your personal belongings.
 
 ## Profile
 
-In your profile, you can view your basic information, the status of your OIDC link, and a list of your resources such as applications, clusters, and templates.
+In your profile, you can view your basic information, the status of your OIDC link, and a list of your resources such as applications, application instances, and templates.
 
 ### Basic Info
 
@@ -23,7 +23,7 @@ Note that once you are registered with an idP, it **cannot** be unlinked.
 
 ### Resources
 
-In the resources area, you can view your applications, clusters, and templates.
+In the resources area, you can view your applications, application instances, and templates.
 If any other resources are added in the future, they will also appear in this area.
 
 ## Personal Access Token
@@ -60,7 +60,7 @@ A personal access token can perform actions based on the assigned scopes.
 |---- |---- |
 |`applications:read-only`|Grants read-only access to applications|
 |`applications:read-write`|Grants read-write access to applications|
-|`clsuters:read-only`|Grants read-only access to clusters|
-|`clsuters:read-write`|Grants read-write access to clusters|
+|`instances:read-only`|Grants read-only access to instances|
+|`instances:read-write`|Grants read-write access to instances|
 |`groups:read-only`|Grants read-only access to groups|
 |`groups:read-write`|Grants read-write access to groups|

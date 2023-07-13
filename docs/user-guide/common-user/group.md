@@ -6,7 +6,7 @@ toc_max_heading_level: 6
 ## Groups
 Groups provide a logical grouping of applications from multiple teams, which provide the following features: 
 * defining templates in group to deploy custom applications
-* defining group member roles to provide group, application and cluster RBAC
+* defining group member roles to provide group, application and application instance RBAC
 * managing access tokens for the resources that need access to the Horizon CD API
 * managing Oauth apps that can use Horizon as an OAuth provider
 * providing other advanced features (e.g. migration, linking to kubernetes etc...)
@@ -33,4 +33,4 @@ You can transfer the group to another group, where your role should be no less t
 Groups can bound kubernetes which is used to deploy your applications by tags. See [kubernetes](../administrator/kubernetes.md) for More information. 
 
 ### Delete groups
-When there is no application or cluster under the group, you can delete it. 
+When there is no application or application instance under the group, you can delete it. 
