@@ -27,6 +27,14 @@ If the option to make them visible only to the owner is selected, only the owner
 
 When determining the user role for a template, Horizon will search for the first role it finds by going up one layer at a time from the current template, and this will be the user's role for that template. Refer to the [Template Specification](/docs/reference/template/specification) for more information on how to create templates.
 
+## Catalog
+
+Catalog is a special kind of template, it would create the predefined application instance, like memcached, mysql, etc, and allows developers creating instances with a few inputs. Catalog support the following kinds:
+
+### Memcached
+
+Memcached is a general-purpose distributed memory caching system. We mede [a template for memcached](https://github.com/horizoncd/memcached), you could using it to create a memcached instance.
+
 ## Template Specification
 
 Details about template please refer to [Specification]
