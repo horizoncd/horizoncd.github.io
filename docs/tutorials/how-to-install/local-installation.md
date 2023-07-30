@@ -88,6 +88,13 @@ After installing docker, you can run the following command to install Horizon, b
 :::info
 
 1. user from China should use flag `-cn` to use the Ali image registry mirror of docker hub.
+```bash
+# kind
+curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -s -- -k -cn
+
+# minikube
+curl -sfL https://raw.githubusercontent.com/horizoncd/horizon/main/scripts/install.sh | bash -s -- -m -cn
+```
 2. the default installation will install Horizon with the latest version. If you want to install a specific version, you can use flag `-v`/`--version` to specify the version.
 3. the default is minimal installation. If you want to install all components of Horizon, you can use flag `-f`/`--full` to specify the full installation.
 
