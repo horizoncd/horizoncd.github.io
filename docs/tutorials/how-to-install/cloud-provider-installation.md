@@ -35,14 +35,20 @@ helm repo add horizoncd https://horizoncd.github.io/helm-charts
 Then, install Horizon:
 
 ```bash
-helm install horizon horizoncd/horizon --namespace horizoncd --create-namespace --set tags.minimal=false,tags.full=true
+helm install horizon horizoncd/horizon \
+--namespace horizoncd \
+--create-namespace \
+--set tags.minimal=false,tags.full=true
 ```
 
 :::caution
 In `Alibaba Cloud` or `Tencent Cloud`, its default storage class requiring that PV created should have a minimum of 20Gi capacity. So you need set all the `storage` to `20Gi` before installing Horizon.
   
 ```bash
-helm install horizon horizoncd/horizon --namespace horizoncd --create-namespace --set tags.minimal=false,tags.full=true \
+helm install horizon horizoncd/horizon \
+--namespace horizoncd \
+--create-namespace \
+--set tags.minimal=false,tags.full=true \
 --set mysql.primary.persistence.size=20Gi \
 --set gitlab.persistence.size=20Gi \
 --set harbor.persistence.persistentVolumeClaim.databse.size=20Gi \
@@ -57,7 +63,10 @@ helm install horizon horizoncd/horizon --namespace horizoncd --create-namespace 
 If your cluster couldn't access docker hub, you could use our mirror registry to pull the images.
 
 ```bash
-helm install horizon horizoncd/horizon --namespace horizoncd --create-namespace --set tags.minimal=false,tags.full=true \
+helm install horizon horizoncd/horizon \
+--namespace horizoncd \
+--create-namespace \
+--set tags.minimal=false,tags.full=true \
 -f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml
 ```
 
@@ -142,3 +151,40 @@ helm install horizon horizon/horizon --namespace horizoncd --create-namespace --
 ```
 
 After setting the domain name, you should access Horizon by `http://<horizon-domain>`, then follow the [How to Deploy Your First Workload](/docs/tutorials/how-to-deploy-your-first-workload) tutorial to make further operations.
+
+## Using existing components
+
+If you already have components horizon needs, you can use it to replace the bundled componenet. We recommend you to record the configuration into a yaml file, and if you are using `horizon-cn-values.yaml`, you should place your configuration file after it, because the configuration in the latter file will override the configuration in the former file.
+
+```bash
+helm install horizon horizoncd/horizon \
+--namespace horizoncd \
+--create-namespace \
+--set tags.minimal=false,tags.full=true \
+-f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml \
+-f <your-configuration-file>
+```
+
+### GitLab
+
+It is recommended to use a dedicated gitlab in production environment to avoid performance issues. But you can also use an existing gitlab if you already have one. The custom values are as follows:
+
+```yaml
+config:
+  gitopsReposConfig:
+    defaultVisibility: private # or public, this is the default visibility of the gitops repository created by Horizon
+    rootGroupPath: horizoncd # the root group path of the gitops repository created by Horizon, you should create this group in your gitlab
+    url: https://gitlab.com # the url of your gitlab
+    token: xxx # the token of your gitlab, it should have the `api`, `write` and `read` scope
+
+argo-cd:
+  configs:
+    credentialTemplates:
+      gitops-creds:
+        url: https://gitlab.com # the url of your gitlab
+        password: xxx # the token of your gitlab
+        username: root # the username of your gitlab
+        name: gitops-creds # fixed, the name of the credential
+```
+
+`config` is for Horizon-core, it creates the gitops repository by this field. `argo-cd` is for ArgoCD, it watch the gitops repository changes by this field.

@@ -213,13 +213,13 @@ Install `Horizon` by helm, you can find the latest version of `Horizon` in [Hori
 For users from China, you use values.:
 
 ```bash
-helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace -f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml
+helm install horizon horizon/horizon -n horizoncd --create-namespace -f https://raw.githubusercontent.com/horizoncd/helm-charts/main/horizon-cn-values.yaml
 ```
 :::
 
 ```bash
 helm repo add horizon https://horizoncd.github.io/helm-charts
-helm install horizon horizon/horizon -n horizoncd --version 2.1.4 --create-namespace
+helm install horizon horizon/horizon -n horizoncd --create-namespace
 ```
 
 Keep watching the service status of `Horizon`. If everything goes well, you can see the following output:
