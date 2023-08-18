@@ -187,4 +187,4 @@ argo-cd:
         name: gitops-creds # fixed, the name of the credential
 ```
 
-`config` is for Horizon-core, it creates the gitops repository by this field. `argo-cd` is for ArgoCD, it watch the gitops repository changes by this field.
+`config` is used to operate gitops repository by Horizon. `argo-cd` gets the gitops repository changing by watching through credential templates.
